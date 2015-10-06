@@ -1,0 +1,31 @@
+{
+  "name": "ui",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {
+    "event-stream": "^3.3.1",
+    "gulp": "~3.8.8",
+    "gulp-clean": "~0.3.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-html2js": "^0.2.0",
+    "gulp-if": "^2.0.0",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-minify-html": "^1.0.4",
+    "gulp-newer": "^0.5.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.4.1"
+  },
+  "scripts": {
+    "postinstall": "bower install && bower update"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BrandonJohnston/dndspells2"
+  },
+  "author": "Brandon Johnston <brandon.johnston83@gmail.com>",
+  "license": ""
+}
