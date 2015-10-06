@@ -103,7 +103,7 @@ gulp.task("js", function() {
 		compileJsAndMaybeHtml(
 			srcJs,
 			distDirectory,
-			"x1-ja-ui.js",
+			"dndspells.js",
 			false,
 			true,
 			""
@@ -111,7 +111,7 @@ gulp.task("js", function() {
 		compileJsAndMaybeHtml(
 			srcJs,
 			distDirectory,
-			"x1-ja-ui.min.js",
+			"dndspells.min.js",
 			true, //I minify things!
 			false,
 			""
@@ -173,7 +173,7 @@ function compileJsAndMaybeHtml(source, destination, concatName, minify, showErro
 			spare: true
 		})))
 		.pipe(gulpif(/[.]html$/, html2js({
-			moduleName: "x1-ja-ui",
+			moduleName: "dndspells",
 			prefix: prefix
 		})))
 		.pipe(sourcemaps.init())
