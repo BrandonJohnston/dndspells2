@@ -1,0 +1,23 @@
+{
+  "name": "dndspells2",
+  "version": "0.0.0",
+  "homepage": "https://github.com/BrandonJohnston/dndspells2",
+  "authors": [
+    "BrandonJ <brandon.johnston83@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7"
+  }
+}
