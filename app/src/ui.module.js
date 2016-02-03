@@ -18,6 +18,8 @@ angular.module('dnd.ui', [
                 .state("default", {
                     url: "/",
                     templateUrl: "components/home/homeView.html",
+                    controller: "homeViewController",
+                    controllerAs: "vm",
                     stateLabel: "dndspells.TITLE"
                 });
 
