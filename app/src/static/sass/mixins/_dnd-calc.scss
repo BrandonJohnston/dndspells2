@@ -1,0 +1,32 @@
+/*****************************************************************************
+**
+**		Calc mixin - helps calculate values in perfecnt (%) or ems
+**
+*****************************************************************************/
+@mixin dnd-calc($property, $target, $context, $measurement: false) {
+
+    @if $measurement == "em" {
+        #{$property}: ($target / $context) * 1em;
+    } @else if $measurement == "%" {
+        #{$property}: ($target / $context) * 100%;
+    } @else {
+        #{$property}: ($target / $context);
+    }
+}
+
+
+/*****************************************************************************
+**
+**		Calc function - calculate and return a target / context number
+**
+*****************************************************************************/
+@function dnd-calc($target, $context, $measurement: false) {
+
+    @if $measurement == "em" {
+        @return ($target / $context) * 1em;
+    } @else if $measurement == "%" {
+        @return ($target / $context) * 100%;
+    } @else {
+        @return ($target / $context);
+    }
+}

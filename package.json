@@ -27,5 +27,8 @@
     "url": "https://github.com/BrandonJohnston/dndspells2"
   },
   "author": "Brandon Johnston <brandon.johnston83@gmail.com>",
-  "license": ""
+  "license": "",
+  "dependencies": {
+    "normalize.css": "^3.0.3"
+  }
 }
