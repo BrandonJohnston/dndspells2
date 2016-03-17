@@ -4,7 +4,8 @@
  */
 var gulp = require('gulp');
 var clean = require('gulp-clean');
-var connect = require('gulp-connect');
+//var connect = require('gulp-connect');
+var webserver = require('gulp-webserver');
 var uglify = require('gulp-uglify');
 var minifyCSS = require('gulp-minify-css');
 var minifyHTML = require('gulp-minify-html');
@@ -20,54 +21,66 @@ var sourcemaps = require('gulp-sourcemaps');
 
 
 /*
- * File paths
+ * Paths to source files
  */
-var srcStubs = ['app/src/stub/**/*.json'];
-var srcHtml = ['app/src/**/*.html'];
-var srcSass = ['app/src/static/sass/**/*.scss'];
-var srcImages = ['app/src/static/images/**/*.jpg'];
-var srcJs = [
-    'app/src/**/*.constant.js',
-    'app/src/**/*.module.js',
-    'app/src/**/*.Module.js',    // TODO: Fix this
-    'app/src/**/*.factory.js',
-    'app/src/**/!(*.release).js',
-    '!app/src/**/*.test.js'
-];
+var sourcePaths = {
+    vendorJs: [
+        "bower_components/angular/angular.js",
+        "bower_components/angular-ui-router/release/angular-ui-router.min.js",
+        "bower_components/angular-sanitize/angular-sanitize.min.js",
+        "bower_components/angular-animate/angular-animate.min.js",
+        "bower_components/angular-translate/angular-translate.min.js",
+        "bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js",
+        "bower_components/angular-bootstrap/ui-bootstrap.min.js"
+    ],
+    vendorCss: [
+
+    ],
+    vendorFonts: [
+
+    ],
+    html: [
+        'app/src/**/*.html'
+    ],
+    sass: [
+        'app/src/static/sass/**/*.scss'
+    ],
+    images: [
+        'app/src/static/images/**/*.jpg'
+    ],
+    js: [
+        'app/src/**/*.constant.js',
+        'app/src/**/*.module.js',
+        'app/src/**/*.Module.js',    // TODO: Fix this
+        'app/src/**/*.factory.js',
+        'app/src/**/!(*.release).js',
+        '!app/src/**/*.test.js'
+    ],
+    stubs: [
+        'app/src/stub/**/*.json'
+    ],
+    i18n: [
+        'app/src/i18n/*.json'
+    ]
+};
 
 
 /*
- * Distro directories
+ * Paths for dist files
  */
-var distDirectory = 'dist';
-var vendorDistDirectory = distDirectory + '/vendor';
+var distPaths = {
+    distDir: 'dist',
+    vendorDistDir: 'dist/vendor'
+};
 
 
-// Add all your 3rd party JS libraries here. Relative paths to your project root.
-var vendorSrcJs = [
-    "bower_components/angular/angular.js",
-    //"bower_components/angular-route/angular-route.min.js",
-    "bower_components/angular-ui-router/release/angular-ui-router.min.js",
-    "bower_components/angular-sanitize/angular-sanitize.min.js",
-    "bower_components/angular-animate/angular-animate.min.js",
-    "bower_components/angular-translate/angular-translate.min.js",
-    "bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js",
-    "bower_components/angular-bootstrap/ui-bootstrap.min.js"
-];
-
-// Add all your 3rd party CSS libraries here. Relative paths to your project root.
-var vendorSrcCss = [
-    //"bower_components/angular/angular-csp.css",
-
-];
-
-
-var vendorSrcFonts = [
-
-];
-
-
-var srcI18n = 'app/src/i18n/*.json';
+/*
+ * Server settings
+ */
+var server = {
+    host: 'localhost',
+    port: '8080'
+};
 
 
 var isProd = false; // Useful for logic concerning if we're a dev build or prod build. Not currently used
@@ -76,69 +89,40 @@ var isProd = false; // Useful for logic concerning if we're a dev build or prod 
 /*
  * Gulp build tasks
  */
-gulp.task('default', ['connect', 'watch']);
-
-
-gulp.task('build', ['stubs', 'images', 'sass', 'html', 'js', 'vendor', 'i18n']);
-
-
-gulp.task('connect', function() {
-    connect.server({
-        root: 'dist',
-        livereload: true
-    });
-});
-
-
-gulp.task('watch', ['build'], function() {
-    gulp.watch([srcHtml], ['html']);
-    gulp.watch([srcSass], ['sass']);
-    gulp.watch([srcJs, srcStubs], ['js']);
-    gulp.watch([srcI18n], ["i18n"]);
-});
-
-
-gulp.task('stubs', function() {
-    gulp.src(srcStubs)
-        .pipe(gulp.dest(distDirectory + '/stub'));
-});
-
-
-gulp.task('images', function() {
-    gulp.src(srcImages)
-        .pipe(gulp.dest(distDirectory + '/static/images'))
-});
-
-
 gulp.task('html', function() {
     return eventStream.merge(
-        compileHtml(srcHtml, distDirectory)
-            .pipe(connect.reload())
+        compileHtml(sourcePaths.html, distPaths.distDir)
     );
 });
 
 
 gulp.task('sass', function() {
     return eventStream.merge(
-        compileSass(srcSass, distDirectory + '/static', 'dnd.css'),
-        compileSass(srcSass, distDirectory + '/static', 'dnd.min.css', true)
+        compileSass(sourcePaths.sass, distPaths.distDir + '/static', 'dnd.css'),
+        compileSass(sourcePaths.sass, distPaths.distDir + '/static', 'dnd.min.css', true)
     );
+});
+
+
+gulp.task('images', function() {
+    return gulp.src(sourcePaths.images)
+        .pipe(gulp.dest(distPaths.distDir + '/static/images'))
 });
 
 
 gulp.task('js', function() {
     return eventStream.merge(
         compileJsAndMaybeHtml(
-            srcJs,
-            distDirectory,
+            sourcePaths.js,
+            distPaths.distDir,
             'dnd-ui.js',
             false,
             true,
             ''
         ),
         compileJsAndMaybeHtml(
-            srcJs,
-            distDirectory,
+            sourcePaths.js,
+            distPaths.distDir,
             'dnd-ui.min.js',
             true, //I minify things!
             false,
@@ -148,28 +132,70 @@ gulp.task('js', function() {
 });
 
 
-gulp.task("i18n", function() {
-    return gulp.src("app/src/i18n/*.json")
-        .pipe(gulp.dest(distDirectory + "/i18n"))
+gulp.task('stubs', function() {
+    return gulp.src(sourcePaths.stubs)
+        .pipe(gulp.dest(distPaths.distDir + '/stub'));
 });
 
 
-gulp.task('clean', function() {
-    return gulp.src(distDirectory, {read: false})
-        .pipe(clean());
+gulp.task("i18n", function() {
+    return gulp.src("app/src/i18n/*.json")
+        .pipe(gulp.dest(distPaths.distDir + "/i18n"))
 });
 
 
 gulp.task('vendor', function() {
     return eventStream.merge(
-        compileJsAndMaybeHtml(vendorSrcJs, vendorDistDirectory, 'vendor.js', isProd, false),
-        gulp.src(vendorSrcCss)
+        compileJsAndMaybeHtml(sourcePaths.vendorJs, distPaths.vendorDistDir, 'vendor.js', isProd, false),
+        gulp.src(sourcePaths.vendorCss)
             .pipe(concat('vendor.css'))
-            .pipe(gulp.dest(vendorDistDirectory)),
-        gulp.src(vendorSrcFonts)
-            .pipe(gulp.dest(vendorDistDirectory + '/fonts'))
+            .pipe(gulp.dest(distPaths.vendorDistDir)),
+        gulp.src(sourcePaths.vendorFonts)
+            .pipe(gulp.dest(distPaths.vendorDistDir + '/fonts'))
     );
 });
+
+
+gulp.task('clean', function() {
+    return gulp.src(distPaths.distDir, {read: false})
+        .pipe(clean());
+});
+
+
+gulp.task('webserver', function() {
+
+    gulp.src('dist')
+        .pipe(webserver({
+            fallback: 'index.html',
+            port: server.port,
+            livereload: true,
+            open: true
+        }));
+});
+
+
+gulp.task('watch', function() {
+    gulp.watch([sourcePaths.html], ['html']);
+    gulp.watch([sourcePaths.sass], ['sass']);
+    gulp.watch([sourcePaths.js, sourcePaths.stubs], ['js']);
+    gulp.watch([sourcePaths.i18n], ["i18n"]);
+});
+
+
+gulp.task('build', ['html', 'sass', 'images', 'js', 'stubs', 'i18n', 'vendor']);
+
+
+gulp.task('default', ['build', 'webserver', 'watch']);
+
+
+//gulp.task('connect', function() {
+//    connect.server({
+//        root: 'dist',
+//        livereload: true
+//    });
+//});
+
+
 
 
 /*
@@ -179,7 +205,7 @@ function compileHtml(source, destination) {
     //we will always minify html because the dev console will prettify it
     return gulp.src(source)
         .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
-        .pipe(newer(distDirectory))
+        .pipe(newer(distPaths.distDir))
         .pipe(minifyHTML({empty: true, spare: true}))
         .pipe(gulp.dest(destination))
 }
@@ -206,7 +232,6 @@ function compileJsAndMaybeHtml(source, destination, concatName, minify, showErro
             spare: true
         })))
         .pipe(gulpif(/[.]html$/, html2js({
-            moduleName: 'dnd-ui',
             moduleName: 'dnd-ui',
             prefix: prefix
         })))

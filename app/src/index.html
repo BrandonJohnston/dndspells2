@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html ng-app="dnd.ui" ng-controller="mainController">
-<head>
-    <meta charset="UTF-8">
-    <title>DnD Spells</title>
-    <!--<link rel=stylesheet href="vendor/vendor.css">-->
-    <link rel=stylesheet href="static/sass/dnd.min.css">
-</head>
-<body>
-    <dnd-sideboard></dnd-sideboard>
-    <ui-view class="frame"></ui-view>
+    <head>
+        <title>DnD Spells</title>
+        <base href="/">
+        <!--<link rel=stylesheet href="vendor/vendor.css">-->
+        <link rel=stylesheet href="static/sass/dnd.min.css">
+    </head>
+    <body>
+        <dnd-sideboard></dnd-sideboard>
+        <ui-view class="frame"></ui-view>
 
-    <!-- Single vendor.js file for all third party dependencies -->
-    <script type=text/javascript src="vendor/vendor.js"></script>
+        <!-- Single vendor.js file for all third party dependencies -->
+        <script type=text/javascript src="vendor/vendor.js"></script>
 
-    <!-- The JS file for this application -->
-    <script type=text/javascript src="dnd-ui.js"></script>
-</body>
+        <!-- The JS file for this application -->
+        <script type=text/javascript src="dnd-ui.js"></script>
+    </body>
 </html>

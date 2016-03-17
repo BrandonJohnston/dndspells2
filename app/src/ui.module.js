@@ -10,17 +10,20 @@ angular.module('dnd.ui', [
     'ui.bootstrap'
 ])
     .config([
-        "$stateProvider", "$urlRouterProvider", "$translateProvider", "$httpProvider",
-        function($stateProvider, $urlRouterProvider, $translateProvider, $httpProvider) {
+        "$stateProvider", "$urlRouterProvider", "$translateProvider", "$locationProvider",
+        function($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider) {
+
+            $locationProvider.hashPrefix(''); // Removes index.html in URL
+            $locationProvider.html5Mode(true);
 
             $urlRouterProvider.otherwise('/'); //redirects undefined states to /
             $stateProvider
-                .state("default", {
-                    url: "/",
-                    templateUrl: "components/home/homeView.html",
-                    controller: "homeViewController",
-                    controllerAs: "vm",
-                    stateLabel: "dndspells.TITLE"
+                .state('home', {
+                    url: '/',
+                    templateUrl: 'components/home/homeView.html',
+                    controller: 'homeViewController',
+                    controllerAs: 'vm',
+                    stateLabel: 'dndspells.TITLE'
                 });
 
 
