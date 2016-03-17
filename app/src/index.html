@@ -3,12 +3,14 @@
     <head>
         <title>DnD Spells</title>
         <base href="/">
-        <!--<link rel=stylesheet href="vendor/vendor.css">-->
+        <link rel=stylesheet href="vendor/vendor.css">
         <link rel=stylesheet href="static/sass/dnd.min.css">
     </head>
     <body>
-        <dnd-sideboard></dnd-sideboard>
-        <ui-view class="frame"></ui-view>
+        <div class="page-frame">
+            <dnd-sideboard></dnd-sideboard>
+            <ui-view class="content-frame"></ui-view>
+        </div>
 
         <!-- Single vendor.js file for all third party dependencies -->
         <script type=text/javascript src="vendor/vendor.js"></script>

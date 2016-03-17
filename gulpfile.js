@@ -1,10 +1,8 @@
-
 /*
  * Import gulp & plug-ins
  */
 var gulp = require('gulp');
 var clean = require('gulp-clean');
-//var connect = require('gulp-connect');
 var webserver = require('gulp-webserver');
 var uglify = require('gulp-uglify');
 var minifyCSS = require('gulp-minify-css');
@@ -34,7 +32,7 @@ var sourcePaths = {
         "bower_components/angular-bootstrap/ui-bootstrap.min.js"
     ],
     vendorCss: [
-
+        'bower_components/normalize-css/normalize.css'
     ],
     vendorFonts: [
 
@@ -90,9 +88,11 @@ var isProd = false; // Useful for logic concerning if we're a dev build or prod 
  * Gulp build tasks
  */
 gulp.task('html', function() {
-    return eventStream.merge(
-        compileHtml(sourcePaths.html, distPaths.distDir)
-    );
+    return gulp.src(sourcePaths.html)
+        .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
+        .pipe(newer(distPaths.distDir))
+        .pipe(minifyHTML({empty: true, spare: true}))
+        .pipe(gulp.dest(distPaths.distDir))
 });
 
 
@@ -188,38 +188,16 @@ gulp.task('build', ['html', 'sass', 'images', 'js', 'stubs', 'i18n', 'vendor']);
 gulp.task('default', ['build', 'webserver', 'watch']);
 
 
-//gulp.task('connect', function() {
-//    connect.server({
-//        root: 'dist',
-//        livereload: true
-//    });
-//});
-
-
-
-
 /*
  * Helper functions
  */
-function compileHtml(source, destination) {
-    //we will always minify html because the dev console will prettify it
-    return gulp.src(source)
-        .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
-        .pipe(newer(distPaths.distDir))
-        .pipe(minifyHTML({empty: true, spare: true}))
-        .pipe(gulp.dest(destination))
-}
-
-
-function compileSass(source, destination, concatName, minify, hideErrors) {
+function compileSass(source, destination, concatName, minify) {
     return gulp.src(source, { base: 'src' })
         .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
         .pipe(sass())
-        // .pipe(sass({errLogToConsole: true})) // DEV ONLY: Don't die during watch() when error in .csss file
-        //.pipe(gulpif(hideErrors, csslint.reporter()))
         .pipe(gulpif(minify, minifyCSS()))
         .pipe(concat(concatName))
-        .pipe(gulp.dest(destination+"/sass"))
+        .pipe(gulp.dest(destination + '/sass'))
 }
 
 
