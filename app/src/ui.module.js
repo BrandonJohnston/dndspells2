@@ -16,12 +16,19 @@ angular.module('dnd.ui', [
             $locationProvider.hashPrefix(''); // Removes index.html in URL
             $locationProvider.html5Mode(true);
 
-            $urlRouterProvider.otherwise('/'); //redirects undefined states to /
+            $urlRouterProvider.otherwise('/home'); //redirects undefined states to /
             $stateProvider
                 .state('home', {
-                    url: '/',
-                    templateUrl: 'components/home/homeView.html',
+                    url: '/home',
+                    templateUrl: 'views/home/homeView.html',
                     controller: 'homeViewController',
+                    controllerAs: 'vm',
+                    stateLabel: 'dndspells.TITLE'
+                })
+                .state('spells', {
+                    url: '/spells',
+                    templateUrl: 'views/spellList/spellListView.html',
+                    controller: 'spellListController',
                     controllerAs: 'vm',
                     stateLabel: 'dndspells.TITLE'
                 });

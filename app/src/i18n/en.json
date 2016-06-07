@@ -1,5 +1,17 @@
 {
     "dndspells": {
-        "TITLE": "DnD Spells"
+        "TITLE": "DnD Spells",
+        "TOP_NAV": {
+            "HEADER": "Top Nav"
+        },
+        "SIDEBOARD": {
+            "HEADER": "Sideboard"
+        },
+        "HOME": {
+            "HEADER": "Homepage"
+        },
+        "SPELL_LIST": {
+            "HEADER": "Spell List"
+        }
     }
 }
