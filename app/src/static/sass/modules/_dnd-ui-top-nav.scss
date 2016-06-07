@@ -14,24 +14,31 @@
     z-index: 1000;
 
     .side-nav-toggle {
+        color: $teal-darken-20;
         cursor: pointer;
         display: inline-block;
         margin-right: dnd-calc(10, 16, em);
         padding: dnd-calc(10, 16, em);
-        transition: background .15s ease-in-out;
+        transition: all .15s ease-in-out;
 
         &.active {
             background: $teal-darken-20;
+            color: $white;
         }
 
         &:hover {
             background: $teal-darken-10;
+            color: $white;
         }
     }
 
     .page-title {
-        color: $white;
         display: inline-block;
-        text-shadow: 0 -1px 0 $teal-darken-10;
+
+        a {
+            color: $white;
+            text-decoration: none;
+            text-shadow: 0 -1px 0 $teal-darken-10;
+        }
     }
 }

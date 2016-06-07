@@ -10,8 +10,13 @@ $teal-darken-10: darken($teal, 10%);
 $teal-darken-20: darken($teal, 20%);
 
 
-// Generic Colors
+// Black / Grays
 $black: #000;
+$black-lighten-50: lighten($black, 50%);
+$black-lighten-90: lighten($black, 90%);
+
+
+// Generic Colors
 $white: #fff;
 
 

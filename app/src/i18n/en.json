@@ -8,7 +8,7 @@
             "VIEW": {
                 "HEADER": "View",
                 "DASHBOARD": "Dashboard",
-                "SPELLS": "Spells"
+                "SPELL_LIST": "Spell List"
             }
         },
         "HOME": {

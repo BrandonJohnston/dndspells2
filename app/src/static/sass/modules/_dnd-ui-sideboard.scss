@@ -25,6 +25,7 @@
     *****************************************************************************/
     .mod-header {
         background: $teal-darken-20;
+        padding-left: dnd-calc(24, 16, em);
     }
 
     h4 {
@@ -40,8 +41,23 @@
     }
 
     .sidebar-nav-item {
-        border-left: 3px solid transparent;
+        border-left: 4px solid transparent;
+        cursor: pointer;
         font-size: dnd-calc(14, 16, em);
-        padding: dnd-calc(10, 14, em) dnd-calc(20, 16, em);
+        padding-left: dnd-calc(20, 14, em);
+
+        &.active {
+            background: lighten($black, 97%);
+            border-left-color: $brand-primary;
+            color: $brand-primary;
+            cursor: auto;
+            font-weight: bold;
+        }
+
+        span {
+            border-bottom: 1px solid $black-lighten-90;
+            display: block;
+            padding: dnd-calc(16, 14, em) dnd-calc(20, 14, em) dnd-calc(16, 14, em) 0;
+        }
     }
 }
