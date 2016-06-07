@@ -6,4 +6,9 @@
 .page-frame {
     padding-top: dnd-calc(40, 16, em);
     position: relative;
+    transition: padding-left .15s ease-in-out;
+
+    &.active {
+        padding-left: dnd-calc(400, 16, em);
+    }
 }

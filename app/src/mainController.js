@@ -6,19 +6,37 @@
     "use strict";
 
     angular
-        .module("dnd.ui")
-        .controller("mainController", mainController);
+        .module('dnd.ui')
+        .controller('mainController', mainController);
 
 
     mainController.$inject = [
-        "$scope",
-        "$log"
+        '$rootScope',
+        '$scope',
+        '$log'
     ];
 
 
-    function mainController($scope, $log) {
+    function mainController($rootScope, $scope, $log) {
 
-        $log.debug("mainController");
+        var vm = this;
+        $log.debug('mainController');
+
+
+        // Setup functions
+        //
+
+
+        // Setup variables
+        vm.isSideboardOpen = false;
+
+
+        /*
+         * toggleSideboard
+         */
+        $rootScope.$on('sideboardToggle', function() {
+            vm.isSideboardOpen = !vm.isSideboardOpen;
+        });
 
     }
 })();

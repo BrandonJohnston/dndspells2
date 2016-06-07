@@ -52,7 +52,7 @@ function sideboardController($rootScope, $scope, $log, $state) {
     /*
      * toggleSideboard
      */
-    $rootScope.$on('sideNavToggle', function() {
+    $rootScope.$on('sideboardToggle', function() {
         vm.isSideboardOpen = !vm.isSideboardOpen;
     });
 

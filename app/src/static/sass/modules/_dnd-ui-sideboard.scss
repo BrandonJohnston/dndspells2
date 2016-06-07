@@ -57,7 +57,15 @@
         span {
             border-bottom: 1px solid $black-lighten-90;
             display: block;
+            font-weight: bold;
             padding: dnd-calc(16, 14, em) dnd-calc(20, 14, em) dnd-calc(16, 14, em) 0;
+        }
+
+        &:hover {
+
+            span {
+                color: $brand-primary;
+            }
         }
     }
 }

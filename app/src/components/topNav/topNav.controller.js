@@ -33,7 +33,7 @@ function topNavController($rootScope, $scope, $log) {
      */
     function toggleSideboard() {
         vm.isToggleOpen = !vm.isToggleOpen;
-        $rootScope.$broadcast('sideNavToggle');
+        $rootScope.$broadcast('sideboardToggle');
     }
 
 }
