@@ -4,5 +4,44 @@
 **
 *****************************************************************************/
 .sideboard {
-    background: red;
+    background: $white;
+    bottom: 0;
+    box-shadow: 0 0 20px rgba($black, .5);
+    left: dnd-calc(-410, 16, em);
+    padding-top: dnd-calc(40, 16, em);
+    position: fixed;
+    top: 0;
+    transition: left .15s ease-in-out;
+    width: dnd-calc(400, 16, em);
+    z-index: 500;
+
+    &.active {
+        left: 0;
+    }
+
+
+    /*****************************************************************************
+    **		Header
+    *****************************************************************************/
+    .mod-header {
+        background: $teal-darken-20;
+    }
+
+    h4 {
+        color: $white;
+    }
+
+
+    /*****************************************************************************
+    **		Body
+    *****************************************************************************/
+    .mod-body {
+        padding: 0;
+    }
+
+    .sidebar-nav-item {
+        border-left: 3px solid transparent;
+        font-size: dnd-calc(14, 16, em);
+        padding: dnd-calc(10, 14, em) dnd-calc(20, 16, em);
+    }
 }

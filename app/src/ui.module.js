@@ -25,6 +25,13 @@ angular.module('dnd.ui', [
                     controllerAs: 'vm',
                     stateLabel: 'dndspells.TITLE'
                 })
+                .state('dashboard', {
+                    url: '/dashboard',
+                    templateUrl: 'views/dashboard/dashboardView.html',
+                    controller: 'dashboardController',
+                    controllerAs: 'vm',
+                    stateLabel: 'dndspells.TITLE'
+                })
                 .state('spells', {
                     url: '/spells',
                     templateUrl: 'views/spellList/spellListView.html',

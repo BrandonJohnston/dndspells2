@@ -19,10 +19,50 @@ body {
 /*****************************************************************************
 **		Typography
 *****************************************************************************/
+h2 {
+    font-size: dnd-calc(24, 16, em);
+    margin: 0 0 dnd-calc(18, 24, em) 0;
+}
+
+h3 {
+    font-size: dnd-calc(20, 16, em);
+    margin: 0 0 dnd-calc(16, 20, em) 0;
+}
+
+h4 {
+    font-size: dnd-calc(18, 16, em);
+    margin: 0 0 dnd-calc(14, 18, em) 0;
+}
+
+h5 {
+    font-size: dnd-calc(16, 16, em);
+    margin: 0 0 dnd-calc(12, 16, em) 0;
+}
+
+h6 {
+    font-size: dnd-calc(14, 16, em);
+    margin: 0 0 dnd-calc(10, 14, em) 0;
+}
+
 p {
     margin: 0 0 dnd-calc(10, 16, em) 0;
+}
+
+
+h2, h3, h4, h5, h6, p {
+    font-weight: normal;
 
     &:last-child {
         margin: 0;
     }
+}
+
+
+/*****************************************************************************
+**		Lists
+*****************************************************************************/
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }

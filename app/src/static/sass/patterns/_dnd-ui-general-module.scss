@@ -5,4 +5,12 @@
 *****************************************************************************/
 .general-module {
     position: relative;
+
+    .mod-header {
+        padding: dnd-calc(10, 16, em) dnd-calc(20, 16, em);
+    }
+
+    .mod-body {
+        padding: dnd-calc(10, 16, em) dnd-calc(20, 16, em);
+    }
 }

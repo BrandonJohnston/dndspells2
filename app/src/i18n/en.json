@@ -5,7 +5,11 @@
             "HEADER": "DnD Spells"
         },
         "SIDEBOARD": {
-            "HEADER": "Sideboard"
+            "VIEW": {
+                "HEADER": "View",
+                "DASHBOARD": "Dashboard",
+                "SPELLS": "Spells"
+            }
         },
         "HOME": {
             "HEADER": "Homepage"
