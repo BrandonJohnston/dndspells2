@@ -8,14 +8,31 @@ angular
 
 
 sideboardController.$inject = [
-    "$scope",
-    "$log"
+    '$rootScope',
+    '$scope',
+    '$log'
 ];
 
 
-function sideboardController($scope, $log) {
+function sideboardController($rootScope, $scope, $log) {
 
     var vm = this;
-    $log.debug("sideboardController");
+    $log.debug('sideboardController');
+
+
+    // Setup functions
+    //vm.toggleSideboard = toggleSideboard;
+
+
+    // Setup variables
+    vm.isSideboardOpen = false;
+
+
+    /*
+     * toggleSideboard
+     */
+    $rootScope.$on('sideNavToggle', function() {
+        vm.isSideboardOpen = !vm.isSideboardOpen;
+    });
 
 }

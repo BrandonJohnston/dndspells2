@@ -8,9 +8,10 @@ angular
         function () {
             return {
                 restrict: 'E',
-                replace: false,
-                templateUrl: "components/sideboard/sideboardView.html",
-                controller: "sideboardController"
+                scope: {},
+                templateUrl: 'components/sideboard/sideboardView.html',
+                controller: 'sideboardController',
+                controllerAs: 'vm'
             };
         }
     ]);

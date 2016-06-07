@@ -19,6 +19,10 @@
         padding: dnd-calc(10, 16, em);
         transition: background .15s ease-in-out;
 
+        &.active {
+            background: $teal-darken-20;
+        }
+
         &:hover {
             background: $teal-darken-10;
         }

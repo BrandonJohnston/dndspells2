@@ -8,14 +8,32 @@ angular
 
 
 topNavController.$inject = [
-    "$scope",
-    "$log"
+    '$rootScope',
+    '$scope',
+    '$log'
 ];
 
 
-function topNavController($scope, $log) {
+function topNavController($rootScope, $scope, $log) {
 
     var vm = this;
-    $log.debug("topNavController");
+    $log.debug('topNavController');
+
+
+    // Setup functions
+    vm.toggleSideboard = toggleSideboard;
+
+
+    // Setup variables
+    vm.isToggleOpen = false;
+
+
+    /*
+     * toggleSideboard
+     */
+    function toggleSideboard() {
+        vm.isToggleOpen = !vm.isToggleOpen;
+        $rootScope.$broadcast('sideNavToggle');
+    }
 
 }
