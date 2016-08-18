@@ -1,0 +1,19 @@
+<div class="signup-module">
+    <h2>Signup</h2>
+    <form class="signup-module" name="signupform" novalidate>
+        <ul>
+            <li>
+                <input type="text" placeholder="Name" name="name" ng-model="vm.signupData.userName" />
+            </li>
+            <li>
+                <input type="text" placeholder="Email" name="email" ng-model="vm.signupData.userEmail" />
+            </li>
+            <li>
+                <input type="password" placeholder="Password" name="password" ng-model="vm.signupData.userPassword" />
+            </li>
+            <li>
+                <span ng-click="vm.signup()">button</span>
+            </li>
+        </ul>
+    </form>
+</div>

@@ -10,16 +10,24 @@ angular.module('dnd.ui', [
     'ui.bootstrap'
 ])
     .config([
-        "$stateProvider", "$urlRouterProvider", "$translateProvider", "$locationProvider",
-        function($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider) {
+        "$stateProvider", "$urlRouterProvider", "$translateProvider", "$locationProvider", "$httpProvider",
+        function($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider) {
+
+
+            // TODO: Test removing this when using a real server
+            $httpProvider.defaults.headers.common = {};
+            $httpProvider.defaults.headers.post = {};
+            $httpProvider.defaults.headers.put = {};
+            $httpProvider.defaults.headers.patch = {};
+
 
             $locationProvider.hashPrefix(''); // Removes index.html in URL
-            $locationProvider.html5Mode(true);
+            $locationProvider.html5Mode({enabled: true, requireBase: false});
 
-            $urlRouterProvider.otherwise('/home'); //redirects undefined states to /
+            $urlRouterProvider.otherwise('/'); //redirects undefined states to /
             $stateProvider
                 .state('home', {
-                    url: '/home',
+                    url: '/',
                     templateUrl: 'views/home/homeView.html',
                     controller: 'homeViewController',
                     controllerAs: 'vm',
