@@ -9,21 +9,42 @@ angular
 
 dashboardController.$inject = [
     '$scope',
-    '$log'
+    '$log',
+    '$state',
+    'UserService'
 ];
 
 
-function dashboardController($scope, $log) {
+function dashboardController($scope, $log, $state, UserService) {
 
     var vm = this;
     $log.debug('dashboardController');
 
 
     // Setup functions
-    //
+    vm.logout = logout;
 
 
     // Setup variables
     //
+
+
+
+    /*
+     * logout
+     */
+    function logout() {
+        $log.debug('dashboardController::logout');
+
+        UserService.logoutUser().then(function(response) {
+
+                UserService.setUserData(null);
+                $state.go('home');
+            },
+            function (errorResp) {
+                $log.debug('UserService errorResp:');
+                $log.debug(errorResp);
+            });
+    }
 
 }

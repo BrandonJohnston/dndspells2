@@ -7,22 +7,32 @@
 
     angular
         .module('dnd.ui')
-        .factory('UserService', userService);
+        .factory('UserService', UserService);
 
-    userService.$inject = ['$log', '$http'];
+    UserService.$inject = ['$log', '$http'];
 
-    function userService($log, $http) {
+    function UserService($log, $http) {
 
         var service = {
+            checkLoggedIn: checkLoggedIn,
             setUserData: setUserData,
             getUserData: getUserData,
-            signupUser: signupUser
+            signupUser: signupUser,
+            logoutUser: logoutUser
         };
 
         return service;
 
 
         var currUserData = null;
+
+
+        /*
+         * checkLoggedIn - see if the user already has a session
+         */
+        function checkLoggedIn() {
+            return $http.get('/api.php/api/user/currentUser');
+        }
 
 
         /*
@@ -57,7 +67,18 @@
                 'password': userData.userPassword
             };
 
-            return $http.post('http://localhost/personal/dndspells2-api/index.php/api/user/signup', postData);
+            return $http.post('/api.php/api/user/signup', postData);
+        }
+
+
+        /*
+         * logoutUser - sign up a new user
+         */
+        function logoutUser(userData) {
+
+            $log.debug('userService::logoutUser:');
+
+            return $http.post('/api.php/api/user/logout');
         }
 
     }

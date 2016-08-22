@@ -169,7 +169,7 @@ gulp.task('webserver', function() {
             fallback: 'index.html',
             port: server.port,
             livereload: true,
-            open: true
+            open: false
         }));
 });
 

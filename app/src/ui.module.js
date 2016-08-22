@@ -10,7 +10,7 @@ angular.module('dnd.ui', [
     'ui.bootstrap'
 ])
     .config([
-        "$stateProvider", "$urlRouterProvider", "$translateProvider", "$locationProvider", "$httpProvider",
+        '$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider',
         function($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider) {
 
 
@@ -66,6 +66,31 @@ angular.module('dnd.ui', [
             // Protect from insertion attacks in the translation values.
             $translateProvider.useSanitizeValueStrategy("sanitizeParameters");
 
+
+        }
+    ])
+    .run(['UserService',
+        function(UserService) {
+
+
+            /*
+             * On app load, check is user has a session
+             */
+            UserService.checkLoggedIn().then(function(response) {
+                if(response.data) {
+
+                    console.log('checkLoggIn success');
+                    console.log(response.data);
+
+                    // save data to user service if we are logged in
+
+                }
+            },
+            function(/*errorResp*/) {
+
+                console.log('checkLoggIn error');
+
+            });
 
         }
     ]);

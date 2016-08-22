@@ -8,8 +8,8 @@ angular
 
 
 homeViewController.$inject = [
-    "$scope",
-    "$log"
+    '$scope',
+    '$log'
 ];
 
 
