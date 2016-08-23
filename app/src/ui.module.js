@@ -13,12 +13,8 @@ angular.module('dnd.ui', [
         '$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider',
         function($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider) {
 
-
-            // TODO: Test removing this when using a real server
-            $httpProvider.defaults.headers.common = {};
-            $httpProvider.defaults.headers.post = {};
-            $httpProvider.defaults.headers.put = {};
-            $httpProvider.defaults.headers.patch = {};
+            // Allows cross-domain api request / response
+            $httpProvider.defaults.useXDomain = true;
 
 
             $locationProvider.hashPrefix(''); // Removes index.html in URL
@@ -69,22 +65,24 @@ angular.module('dnd.ui', [
 
         }
     ])
-    .run(['UserService',
-        function(UserService) {
+    .run(['$rootScope', '$log', '$state', 'UserService',
+        function($rootScope, $log, $state, UserService) {
 
+            $log.debug('run block started');
 
             /*
              * On app load, check is user has a session
              */
             UserService.checkLoggedIn().then(function(response) {
-                if(response.data) {
 
-                    console.log('checkLoggIn success');
-                    console.log(response.data);
-
-                    // save data to user service if we are logged in
-
+                if(response.data.loggedin) {
+                    UserService.setUserData(response.data);
+                } else {
+                    UserService.setUserData(null);
                 }
+
+                $rootScope.$broadcast('UserDataLoaded');
+
             },
             function(/*errorResp*/) {
 

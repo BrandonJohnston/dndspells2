@@ -9,21 +9,50 @@ angular
 
 loginController.$inject = [
     '$scope',
-    '$log'
+    '$log',
+    '$state',
+    'UserService'
 ];
 
 
-function loginController($scope, $log) {
+function loginController($scope, $log, $state, UserService) {
 
     var vm = this;
     $log.debug('loginController');
 
 
     // Setup functions
-    //
+    vm.login = login;
 
 
     // Setup variables
-    //
+    vm.loginData = {
+        'userEmail': null,
+        'userPassword': null
+    };
+
+
+    /*
+     * login
+     */
+    function login() {
+        $log.debug('loginController::login');
+
+        UserService.loginUser(vm.loginData).then(function(response) {
+
+                if (response.data.loggedin) {
+                    UserService.setUserData(response.data);
+                    $state.go('dashboard');
+                } else {
+                    $log.debug('loginUser response.data:');
+                    $log.debug(response.data);
+                }
+
+            },
+            function (errorResp) {
+                $log.debug('UserService errorResp:');
+                $log.debug(errorResp);
+            });
+    }
 
 }

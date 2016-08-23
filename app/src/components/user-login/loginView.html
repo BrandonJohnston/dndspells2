@@ -3,13 +3,13 @@
     <form class="login-form">
         <ul>
             <li>
-                <input type="text" placeholder="Username" />
+                <input type="text" placeholder="Email" name="email" ng-model="vm.loginData.userEmail" />
             </li>
             <li>
-                <input type="password" placeholder="Password" />
+                <input type="password" placeholder="Password" name="password" ng-model="vm.loginData.userPassword" />
             </li>
             <li>
-                <span>button</span>
+                <span ng-click="vm.login()">button</span>
             </li>
         </ul>
     </form>

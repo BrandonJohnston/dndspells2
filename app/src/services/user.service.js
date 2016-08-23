@@ -18,6 +18,7 @@
             setUserData: setUserData,
             getUserData: getUserData,
             signupUser: signupUser,
+            loginUser: loginUser,
             logoutUser: logoutUser
         };
 
@@ -31,7 +32,16 @@
          * checkLoggedIn - see if the user already has a session
          */
         function checkLoggedIn() {
-            return $http.get('/api.php/api/user/currentUser');
+            //return $http.get('http://127.0.0.1/personal/dndspells2-api/api.php/api/user/currentUser');
+
+            return $http({
+                url: 'http://127.0.0.1/personal/dndspells2-api/api.php/api/user/currentUser',
+                method: 'GET',
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8'
+                }
+            });
         }
 
 
@@ -59,26 +69,61 @@
          */
         function signupUser(userData) {
 
-            $log.debug('userService::signupUser - userData:');
-
             var postData = {
                 'name': userData.userName,
                 'email': userData.userEmail,
                 'password': userData.userPassword
             };
 
-            return $http.post('/api.php/api/user/signup', postData);
+            return $http({
+                url: 'http://127.0.0.1/personal/dndspells2-api/api.php/api/user/signup',
+                method: 'POST',
+                data: postData,
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8'
+                }
+            });
+        }
+
+
+        /*
+         * signupUser - sign up a new user
+         * @userData - object {name, email, password}
+         */
+        function loginUser(userData) {
+
+            var postData = {
+                'email': userData.userEmail,
+                'password': userData.userPassword
+            };
+
+            return $http({
+                url: 'http://127.0.0.1/personal/dndspells2-api/api.php/api/user/login',
+                method: 'POST',
+                data: postData,
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8'
+                }
+            });
         }
 
 
         /*
          * logoutUser - sign up a new user
          */
-        function logoutUser(userData) {
+        function logoutUser() {
 
-            $log.debug('userService::logoutUser:');
-
-            return $http.post('/api.php/api/user/logout');
+            return $http({
+                url: 'http://127.0.0.1/personal/dndspells2-api/api.php/api/user/logout',
+                method: 'POST',
+                data: currUserData,
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8'
+                }
+            });
         }
 
     }
