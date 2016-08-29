@@ -1,9 +1,9 @@
 <div class="login-module">
-    <h2>Login</h2>
+    <h2 translate="dndspells.LOGIN_FORM.HEADER"></h2>
     <form class="login-form" name="loginForm" novalidate>
         <ul>
             <li>
-                <input type="email" placeholder="Email" name="email" ng-model="vm.loginData.userEmail"
+                <input type="email" placeholder="{{'dndspells.GENERAL.EMAIL' | translate}}" name="email" ng-model="vm.loginData.userEmail"
                        required ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 250, 'blur': 0 } }"
                        ng-class="{'ng-invalid': vm.loginData.loginError}" ng-focus="vm.loginData.loginError=false" />
                 <div class="form-errors" ng-if="loginForm.email.$invalid && loginForm.email.$dirty">
@@ -12,10 +12,10 @@
                 </div>
             </li>
             <li>
-                <input type="password" placeholder="Password" name="password" ng-model="vm.loginData.userPassword"
+                <input type="password" placeholder="{{'dndspells.GENERAL.PASSWORD' | translate}}" name="password" ng-model="vm.loginData.userPassword"
                        required ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 250, 'blur': 0 } }"
                        ng-class="{'ng-invalid': vm.loginData.loginError}" ng-focus="vm.loginData.loginError=false"
-                       ng-keyup="$event.keyCode == 13 && vm.login()"/>
+                       ng-keyup="loginForm.$valid && $event.keyCode == 13 && vm.login()"/>
                 <div class="form-errors" ng-if="loginForm.password.$invalid && loginForm.password.$dirty">
                     <p class="error" ng-show="loginForm.password.$error.required && loginForm.password.$dirty" translate="dndspells.LOGIN_FORM.ERROR_PASSWORD_REQUIRED"></p>
                 </div>

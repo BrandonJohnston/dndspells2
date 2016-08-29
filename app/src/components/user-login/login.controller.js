@@ -46,7 +46,7 @@ function loginController($scope, $log, $state, UserService) {
                     $state.go('dashboard');
                 } else {
 
-                    if (response.data.error === 103) {
+                    if (response.data.error === 105) {
                         vm.loginData.loginError = true;
                     }
                 }

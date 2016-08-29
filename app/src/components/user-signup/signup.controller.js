@@ -29,7 +29,8 @@ function signupController($scope, $log, $state, UserService) {
     vm.signupData = {
         'userName': null,
         'userEmail': null,
-        'userPassword': null
+        'userPassword': null,
+        'signupError': false
     };
 
 
@@ -47,6 +48,10 @@ function signupController($scope, $log, $state, UserService) {
             } else {
                 $log.debug('signupUser failed - response.data:');
                 $log.debug(response.data);
+
+                if (response.data.error === 102) {
+                    vm.signupData.signupError = true;
+                }
             }
 
 

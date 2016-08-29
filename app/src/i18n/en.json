@@ -19,7 +19,17 @@
         "HOME": {
             "HEADER": "Homepage"
         },
+        "SIGNUP_FORM": {
+            "HEADER": "Signup",
+            "ERROR_NAME_REQUIRED": "A name is required.",
+            "ERROR_EMAIL_REQUIRED": "Email address is required.",
+            "ERROR_EMAIL_INVALID": "Not a valid email address.",
+            "ERROR_PASSWORD_REQUIRED": "Password is required.",
+            "SIGNUP": "Signup",
+            "ERROR_EMAIL_EXISTS": "This email address already has an account."
+        },
         "LOGIN_FORM": {
+            "HEADER": "Login",
             "ERROR_EMAIL_REQUIRED": "Email address is required.",
             "ERROR_EMAIL_INVALID": "Not a valid email address.",
             "ERROR_PASSWORD_REQUIRED": "Password is required.",

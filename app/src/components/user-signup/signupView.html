@@ -1,19 +1,40 @@
 <div class="signup-module">
-    <h2>Signup</h2>
-    <form class="signup-module" name="signupform" novalidate>
+    <h2 translate="dndspells.SIGNUP_FORM.HEADER"></h2>
+    <form class="signup-module" name="signupForm" novalidate>
         <ul>
             <li>
-                <input type="text" placeholder="Name" name="name" ng-model="vm.signupData.userName" />
+                <input type="text" placeholder="{{'dndspells.GENERAL.NAME' | translate}}" name="name" ng-model="vm.signupData.userName"
+                       required ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 250, 'blur': 0 } }"
+                       ng-class="{'ng-invalid': vm.signupData.signupError}" ng-focus="vm.signupData.signupError=false"/>
+                <div class="form-errors" ng-if="signupForm.name.$invalid && signupForm.name.$dirty">
+                    <p class="error" ng-if="signupForm.name.$error.required && signupForm.name.$dirty" translate="dndspells.SIGNUP_FORM.ERROR_NAME_REQUIRED"></p>
+                </div>
             </li>
             <li>
-                <input type="text" placeholder="Email" name="email" ng-model="vm.signupData.userEmail" />
+                <input type="email" placeholder="{{'dndspells.GENERAL.EMAIL' | translate}}" name="email" ng-model="vm.signupData.userEmail"
+                       required ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 250, 'blur': 0 } }"
+                       ng-class="{'ng-invalid': vm.signupData.signupError}" ng-focus="vm.signupData.signupError=false" />
+                <div class="form-errors" ng-if="signupForm.email.$invalid && signupForm.email.$dirty">
+                    <p class="error" ng-if="signupForm.email.$error.required && signupForm.email.$dirty" translate="dndspells.SIGNUP_FORM.ERROR_EMAIL_REQUIRED"></p>
+                    <p class="error" ng-if="signupForm.email.$error.email && signupForm.email.$dirty" translate="dndspells.SIGNUP_FORM.ERROR_EMAIL_INVALID"></p>
+                </div>
             </li>
             <li>
-                <input type="password" placeholder="Password" name="password" ng-model="vm.signupData.userPassword" />
+                <input type="password" placeholder="{{'dndspells.GENERAL.PASSWORD' | translate}}" name="password" ng-model="vm.signupData.userPassword"
+                       required ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 250, 'blur': 0 } }"
+                       ng-class="{'ng-invalid': vm.signupData.signupError}" ng-focus="vm.signupData.signupError=false"
+                       ng-keyup="signupForm.$valid && $event.keyCode == 13 && vm.signup()"/>
+                <div class="form-errors" ng-if="signupForm.password.$invalid && signupForm.password.$dirty">
+                    <p class="error" ng-show="signupForm.password.$error.required && signupForm.password.$dirty" translate="dndspells.SIGNUP_FORM.ERROR_PASSWORD_REQUIRED"></p>
+                </div>
             </li>
             <li>
-                <span ng-click="vm.signup()">button</span>
+                <input type="button" class="button-submit" ng-class="{'button-disabled': signupForm.$invalid || vm.signupForm.signupError}"
+                       ng-disabled="signupForm.$invalid || vm.signupForm.signupError" ng-click="vm.signup()" value="{{'dndspells.SIGNUP_FORM.SIGNUP' | translate}}" />
             </li>
         </ul>
+        <div ng-if="vm.signupData.signupError" class="form-errors">
+            <p class="error" translate="dndspells.SIGNUP_FORM.ERROR_EMAIL_EXISTS"></p>
+        </div>
     </form>
 </div>
