@@ -31,7 +31,14 @@ input[type="text"], input[type="password"], input[type="email"] {
     padding: dnd-calc(12, 18, em);
     width: 100%;
 
-    &.ng-touched.ng-invalid {
+    &.ng-dirty.ng-invalid {
         border-color: $error;
     }
+}
+
+input[type="button"] {
+    display: block;
+    font-size: dnd-calc(18, 16, em);
+    padding: dnd-calc(12, 18, em);
+    width: 100%;
 }

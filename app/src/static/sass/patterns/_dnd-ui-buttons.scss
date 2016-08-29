@@ -1,0 +1,39 @@
+/*****************************************************************************
+**
+**		Button Styles
+**
+*****************************************************************************/
+.button-submit {
+    background: $brand-primary;
+    border: 1px solid $teal-darken-10;
+    color: $teal-darken-20;
+    transition: all .15s ease-in-out;
+
+    &:hover {
+        background: $teal-darken-10;
+        color: $white;
+    }
+
+    &:active {
+        background: $teal-darken-20;
+        color: $white;
+    }
+}
+
+
+.button-disabled {
+    background: $black-lighten-90;
+    border: 1px solid $black-lighten-50;
+    color: $black-lighten-50;
+    cursor: default;
+
+    &:hover {
+        background: $black-lighten-90;
+        color: $black-lighten-50;
+    }
+
+    &:active {
+        background: $black-lighten-90;
+        color: $black-lighten-50;
+    }
+}
