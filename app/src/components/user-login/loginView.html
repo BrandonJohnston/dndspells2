@@ -1,16 +1,31 @@
 <div class="login-module">
     <h2>Login</h2>
-    <form class="login-form">
+    <form class="login-form" name="loginForm" novalidate>
         <ul>
             <li>
-                <input type="text" placeholder="Email" name="email" ng-model="vm.loginData.userEmail" />
+                <input type="email" placeholder="Email" name="email" ng-model="vm.loginData.userEmail"
+                       required ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
+                       ng-class="{'ng-invalid': vm.loginData.loginError}" ng-focus="vm.loginData.loginError=false" />
+                <div class="form-errors" ng-if="loginForm.email.$invalid && loginForm.email.$touched">
+                    <p class="error" ng-if="loginForm.email.$error.required && loginForm.email.$touched" translate="dndspells.LOGIN_FORM.ERROR_EMAIL_REQUIRED"></p>
+                    <p class="error" ng-if="loginForm.email.$error.email && loginForm.email.$touched" translate="dndspells.LOGIN_FORM.ERROR_EMAIL_INVALID"></p>
+                </div>
             </li>
             <li>
-                <input type="password" placeholder="Password" name="password" ng-model="vm.loginData.userPassword" />
+                <input type="password" placeholder="Password" name="password" ng-model="vm.loginData.userPassword"
+                       required ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
+                       ng-class="{'ng-invalid': vm.loginData.loginError}" ng-focus="vm.loginData.loginError=false" />
+                <div class="form-errors" ng-if="loginForm.password.$invalid && loginForm.password.$touched">
+                    <p class="error" ng-show="loginForm.password.$error.required && loginForm.password.$touched" translate="dndspells.LOGIN_FORM.ERROR_PASSWORD_REQUIRED"></p>
+                </div>
             </li>
             <li>
-                <span ng-click="vm.login()">button</span>
+                <input type="button" class="button-submit" ng-class="{'button-disabled': loginForm.$invalid || vm.loginData.loginError}"
+                       ng-disabled="loginForm.$invalid || vm.loginData.loginError" ng-click="vm.login()" value="{{'dndspells.LOGIN_FORM.LOGIN' | translate}}" />
             </li>
         </ul>
+        <div ng-if="vm.loginData.loginError" class="form-errors">
+            <p class="error" translate="dndspells.LOGIN_FORM.ERROR_LOGIN_ERROR"></p>
+        </div>
     </form>
 </div>

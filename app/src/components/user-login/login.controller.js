@@ -28,7 +28,8 @@ function loginController($scope, $log, $state, UserService) {
     // Setup variables
     vm.loginData = {
         'userEmail': null,
-        'userPassword': null
+        'userPassword': null,
+        'loginError': false
     };
 
 
@@ -44,8 +45,10 @@ function loginController($scope, $log, $state, UserService) {
                     UserService.setUserData(response.data);
                     $state.go('dashboard');
                 } else {
-                    $log.debug('loginUser response.data:');
-                    $log.debug(response.data);
+
+                    if (response.data.error === 103) {
+                        vm.loginData.loginError = true;
+                    }
                 }
 
             },

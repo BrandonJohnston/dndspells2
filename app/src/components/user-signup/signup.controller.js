@@ -45,7 +45,7 @@ function signupController($scope, $log, $state, UserService) {
                 UserService.setUserData(response.data);
                 $state.go('dashboard');
             } else {
-                $log.debug('signupUser response.data:');
+                $log.debug('signupUser failed - response.data:');
                 $log.debug(response.data);
             }
 

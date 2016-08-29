@@ -55,7 +55,9 @@ function sideboardController($rootScope, $scope, $log, $state, UserService) {
      */
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
         vm.stateDetails = toState;
-        vm.userData = UserService.getUserData();
+
+        // check user status when state changes
+        checkUserData();
     });
 
 
@@ -74,9 +76,6 @@ function sideboardController($rootScope, $scope, $log, $state, UserService) {
     function checkUserData() {
 
         vm.userData = UserService.getUserData();
-        if (!vm.userData) {
-            $state.go('home');
-        }
     }
 
 

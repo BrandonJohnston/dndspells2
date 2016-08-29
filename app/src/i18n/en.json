@@ -1,6 +1,11 @@
 {
     "dndspells": {
         "TITLE": "DnD Spells",
+        "GENERAL": {
+            "NAME": "Name",
+            "EMAIL": "Email",
+            "PASSWORD": "Password"
+        },
         "TOP_NAV": {
             "HEADER": "DnD Spells"
         },
@@ -13,6 +18,13 @@
         },
         "HOME": {
             "HEADER": "Homepage"
+        },
+        "LOGIN_FORM": {
+            "ERROR_EMAIL_REQUIRED": "Email address is required.",
+            "ERROR_EMAIL_INVALID": "Not a valid email address.",
+            "ERROR_PASSWORD_REQUIRED": "Password is required.",
+            "LOGIN": "Login",
+            "ERROR_LOGIN_ERROR": "Your email or password is incorrect."
         },
         "SPELL_LIST": {
             "HEADER": "Spell List"
