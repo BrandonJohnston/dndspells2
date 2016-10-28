@@ -12,6 +12,7 @@
         "SIDEBOARD": {
             "VIEW": {
                 "HEADER": "View",
+                "HOME": "Home",
                 "DASHBOARD": "Dashboard",
                 "SPELL_LIST": "Spell List"
             }

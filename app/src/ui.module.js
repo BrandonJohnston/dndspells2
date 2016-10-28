@@ -78,7 +78,7 @@ angular.module('dnd.ui', [
                 if(response.data.loggedin) {
                     UserService.setUserData(response.data);
                 } else {
-                    UserService.setUserData(null);
+                    UserService.setUserData(false);
                 }
 
                 $rootScope.$broadcast('UserDataLoaded');

@@ -9,6 +9,16 @@
     transition: padding-left .15s ease-in-out;
 
     &.active {
-        padding-left: dnd-calc(400, 16, em);
+        padding-left: dnd-calc($sideboard-padding-small, 100, %);
+
+        @media screen and ( min-width: 640px ) {
+            padding-left: dnd-calc($sideboard-padding-medium, 16, em);
+        }
     }
+}
+
+
+.content-frame {
+    display: block;
+    overflow: hidden;
 }

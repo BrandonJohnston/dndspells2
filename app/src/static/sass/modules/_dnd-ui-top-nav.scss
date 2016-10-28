@@ -17,9 +17,9 @@
         color: $teal-darken-20;
         cursor: pointer;
         display: inline-block;
-        margin-right: dnd-calc(10, 16, em);
         padding: dnd-calc(10, 16, em);
         transition: all .15s ease-in-out;
+        vertical-align: top;
 
         &.active {
             background: $teal-darken-20;
@@ -33,12 +33,37 @@
     }
 
     .page-title {
+        cursor: pointer;
         display: inline-block;
+        height: 100%;
+        padding: 0 dnd-calc(10, 16, em);
+        transition: all .15s ease-in-out;
+        vertical-align: top;
 
-        a {
+        &:before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+
+        span {
             color: $white;
+            display: inline-block;
             text-decoration: none;
             text-shadow: 0 -1px 0 $teal-darken-10;
+            vertical-align: middle;
+        }
+
+
+        &:active {
+            background: $teal-darken-20;
+            color: $white;
+        }
+
+        &:hover {
+            background: $teal-darken-10;
+            color: $white;
         }
     }
 }

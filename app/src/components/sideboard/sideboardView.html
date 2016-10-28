@@ -7,6 +7,10 @@
     <div class="mod-body-wrapper">
         <div class="mod-body">
             <ul class="sidebar-nav">
+                <li class="sidebar-nav-item" ng-class="{'active': vm.stateDetails.name === 'home'}"
+                    ng-if="!vm.userData.loggedin" ng-click="vm.navigate('home')">
+                    <span translate="dndspells.SIDEBOARD.VIEW.HOME"></span>
+                </li>
                 <li class="sidebar-nav-item" ng-class="{'active': vm.stateDetails.name === 'dashboard'}"
                     ng-if="vm.userData.loggedin" ng-click="vm.navigate('dashboard')">
                     <span translate="dndspells.SIDEBOARD.VIEW.DASHBOARD"></span>

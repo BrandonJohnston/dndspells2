@@ -45,6 +45,11 @@ function sideboardController($rootScope, $scope, $log, $state, UserService) {
     function navigate(newState) {
 
         if (newState !== vm.stateDetails.name) {
+
+            // close the sideboard on navigation
+            $rootScope.$broadcast('sideboardToggle');
+
+            // send user to new state
             $state.go(newState);
         }
     }
@@ -62,7 +67,7 @@ function sideboardController($rootScope, $scope, $log, $state, UserService) {
 
 
     /*
-     * toggleSideboard
+     * listen for sideboardToggle - it can be sent from other views
      */
     $rootScope.$on('sideboardToggle', function() {
         vm.isSideboardOpen = !vm.isSideboardOpen;
