@@ -51,14 +51,6 @@
         font-size: dnd-calc(14, 16, em);
         padding-left: dnd-calc(20, 14, em);
 
-        &.active {
-            background: lighten($black, 97%);
-            border-left-color: $brand-primary;
-            color: $brand-primary;
-            cursor: default;
-            font-weight: bold;
-        }
-
         span {
             border-bottom: 1px solid $black-lighten-90;
             display: block;
@@ -70,6 +62,25 @@
 
             span {
                 color: $brand-primary;
+            }
+        }
+
+        &.active {
+            background: lighten($black, 97%);
+            border-left-color: $teal-darken-20;
+            color: $teal-darken-20;
+            cursor: default;
+            font-weight: bold;
+
+            span {
+                border-bottom: 1px solid $teal-darken-20;
+            }
+
+            &:hover {
+
+                span {
+                    color: $teal-darken-20;
+                }
             }
         }
     }

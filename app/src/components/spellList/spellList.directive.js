@@ -1,16 +1,16 @@
 /**
- * Created by brandonj on 8/18/16.
+ * Created by brandonj on 10/31/16.
  */
 
 angular
     .module('dnd.ui')
-    .directive('dndSignupForm', [
+    .directive('dndSpellList', [
         function () {
             return {
                 restrict: 'E',
                 scope: {},
-                templateUrl: 'components/user-signup/signupView.html',
-                controller: 'signupController',
+                templateUrl: 'components/spellList/spellListView.html',
+                controller: 'spellListDirectiveController',
                 controllerAs: 'vm'
             };
         }

@@ -38,7 +38,10 @@
             "ERROR_LOGIN_ERROR": "Your email or password is incorrect."
         },
         "SPELL_LIST": {
-            "HEADER": "Spell List"
+            "HEADER": "Spell List",
+            "SPELL_NAME": "Spell Name",
+            "SPELL_LEVEL": "Level",
+            "SPELL_SCHOOL": "School"
         }
     }
 }

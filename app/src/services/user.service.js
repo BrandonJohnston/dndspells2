@@ -32,7 +32,6 @@
          * checkLoggedIn - see if the user already has a session
          */
         function checkLoggedIn() {
-            //return $http.get('http://127.0.0.1/personal/dndspells2-api/api.php/api/user/currentUser');
 
             return $http({
                 url: 'http://127.0.0.1/personal/dndspells2-api/api.php/api/user/currentUser',

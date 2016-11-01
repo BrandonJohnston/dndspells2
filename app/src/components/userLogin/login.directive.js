@@ -9,7 +9,7 @@ angular
             return {
                 restrict: 'E',
                 scope: {},
-                templateUrl: 'components/user-login/loginView.html',
+                templateUrl: 'components/userLogin/loginView.html',
                 controller: 'loginController',
                 controllerAs: 'vm'
             };

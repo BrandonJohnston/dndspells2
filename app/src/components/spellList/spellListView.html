@@ -1,0 +1,38 @@
+<div class="spell-list-module general-module">
+    <div class="mod-header-wrapper">
+        <div class="mod-header">
+            <p translate="dndspells.SPELL_LIST.HEADER"></p>
+        </div>
+    </div>
+    <div class="mod-body-wrapper">
+        <div class="mod-body">
+            <div class="spell-list-filters">
+                <p>filters go here</p>
+            </div>
+            <ul class="spell-list">
+                <li class="spell-list-header">
+                    <div class="spell-list-col name-col">
+                        <p translate="dndspells.SPELL_LIST.SPELL_NAME"></p>
+                    </div>
+                    <div class="spell-list-col level-col">
+                        <p translate="dndspells.SPELL_LIST.SPELL_LEVEL"></p>
+                    </div>
+                    <div class="spell-list-col school-col">
+                        <p translate="dndspells.SPELL_LIST.SPELL_SCHOOL"></p>
+                    </div>
+                </li>
+                <li ng-repeat="spell in vm.spellsData track by $index" class="spell-list-row">
+                    <div class="spell-list-col name-col">
+                        <p>{{spell.name}}</p>
+                    </div>
+                    <div class="spell-list-col level-col">
+                        <p>{{spell.level}}</p>
+                    </div>
+                    <div class="spell-list-col school-col">
+                        <p>{{spell.school}}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

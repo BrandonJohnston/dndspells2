@@ -1,0 +1,50 @@
+/*****************************************************************************
+**
+**		Spell List Module
+**
+*****************************************************************************/
+.spell-list-module {
+
+    .mod-body {
+        padding-top: 0;
+    }
+
+    .spell-list {
+
+    }
+
+    .spell-list-col {
+        display: inline-block;
+        padding: dnd-calc(6, 16, em) dnd-calc(10, 16, em);
+        vertical-align: top;
+    }
+
+    .name-col {
+        width: dnd-calc(2, 5, %);
+    }
+
+    .level-col {
+        width: dnd-calc(1, 5, %);
+    }
+
+    .school-col {
+        width: dnd-calc(2, 5, %);
+    }
+
+    /*
+     * Header styles
+     */
+    .spell-list-header {
+        border-top: 1px solid $teal-darken-20;
+        border-bottom: 1px solid $teal-darken-20;
+
+        .spell-list-col {
+            background: $brand-primary;
+            border-left: 1px solid $teal-darken-20;
+
+            &:first-child {
+                border-left: none;
+            }
+        }
+    }
+}
