@@ -11,11 +11,12 @@ spellListDirectiveController.$inject = [
     '$scope',
     '$log',
     '$translate',
-    'SpellListService'
+    'SpellListService',
+    'SpellsConstants'
 ];
 
 
-function spellListDirectiveController($scope, $log, $translate, SpellListService) {
+function spellListDirectiveController($scope, $log, $translate, SpellListService, SpellsConstants) {
 
     var vm = this;
     $log.debug('spellListDirectiveController');
@@ -25,15 +26,49 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
     vm.getSpells = getSpells;
     vm.getSchoolTranslation = getSchoolTranslation;
     vm.getLevelTranslation = getLevelTranslation;
+    vm.spellOptionDropdownChanged = spellOptionDropdownChanged;
     vm.setOrderProp = setOrderProp;
 
 
     // Setup variables
     vm.spellsData = null;
     vm.spellOrder = 'name';
+    vm.spellOptionsDropdown = {};
 
 
-    getSpells();
+    init();
+
+
+    function init() {
+
+        // Set the options dropdown config
+        vm.spellOptionsDropdown.config = {
+            displayMode: 'block',
+            label: $translate.instant('dndspells.SPELL_LIST.LEVEL_FILTER_LABEL')
+        };
+
+
+        // Get spell level options from constant
+        vm.spellOptionsDropdown.spellLevels = SpellsConstants.SPELL_LEVELS;
+        vm.spellOptionsDropdown.spellLevels[0].name = $translate.instant('dndspells.SPELL_LIST.CANTRIP');
+
+
+        // Add the 'All' option
+        var option = {
+            id: '9',
+            name: $translate.instant('dndspells.SPELL_LIST.ALL'),
+            value: null
+        };
+        vm.spellOptionsDropdown.spellLevels.unshift(option);
+
+
+        // Select the first option
+        vm.spellOptionsDropdown.selectedLevel = vm.spellOptionsDropdown.spellLevels[0];
+
+
+        // Get spells data from API
+        getSpells();
+    }
 
 
     /*
@@ -68,6 +103,16 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
     function getLevelTranslation(level) {
 
         return level === '0' ? $translate.instant('dndspells.SPELL_LIST.CANTRIP') : level;
+    }
+
+
+    /*
+     * setOrderProp - change the spell list ordering property
+     */
+    function spellOptionDropdownChanged(option) {
+
+        $log.debug('spellOptionDropdownChanged() ' + option);
+
     }
 
 

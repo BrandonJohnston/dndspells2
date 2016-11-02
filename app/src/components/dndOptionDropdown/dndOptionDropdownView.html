@@ -1,0 +1,19 @@
+<div class="dnd-option-dropdown"
+     ng-class="{'option-block': vm.selectConfig.displayMode ==='block',
+     'option-inline-block': vm.selectConfig.displayMode ==='inline-block',
+     'active': vm.isListOpen}">
+    <label class="dropdown-label">{{vm.selectConfig.label}}</label>
+    <div class="selected-option" ng-click="vm.toggleOptionList()">
+        <span class="selected-option-text">{{vm.selectedOption.name}}</span>
+        <div class="option-toggle"></div>
+    </div>
+    <ul class="option-list">
+        <li class="option-list-item" ng-repeat="option in vm.selectOptions track by $index"
+                ng-click="vm.selectOption(option)"
+                ng-class="{'selected': vm.selectedOption.id === option.id}">
+            <div class="text-container">
+                <p class="option-text">{{option.name}}</p>
+            </div>
+        </li>
+    </ul>
+</div>

@@ -39,9 +39,13 @@
         },
         "SPELL_LIST": {
             "HEADER": "Spell List",
+            "LEVEL_FILTER_LABEL": "Level:",
+            "SCHOOL_FILTER_LABEL": "School:",
+            "CLASS_FILTER_LABEL": "Class:",
             "SPELL_NAME": "Spell Name",
             "SPELL_LEVEL": "Level",
             "SPELL_SCHOOL": "School",
+            "ALL": "All",
             "CANTRIP": "Cantrip",
             "SCHOOL_ABJURATION": "Abjuration",
             "SCHOOL_CONJURATION": "Conjuration",

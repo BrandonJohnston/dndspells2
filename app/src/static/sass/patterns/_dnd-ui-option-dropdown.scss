@@ -1,0 +1,154 @@
+/*****************************************************************************
+**
+**		Option Dropdown
+**
+*****************************************************************************/
+.dnd-option-dropdown {
+    position: relative;
+
+    /*
+     * Display mode types (block/inline-block)
+     */
+    &.option-block {
+        display: block;
+    }
+
+    &.option-inline-block {
+        display: inline-block;
+    }
+
+
+    .dropdown-label {
+        display: block;
+        font-size: dnd-calc(12, 16, em);
+        font-weight: bold;
+        padding-bottom: dnd-calc(6, 12, em);
+    }
+
+
+    /*
+     * The selected option
+     */
+    .selected-option {
+        border: 1px solid $teal-darken-20;
+        cursor: pointer;
+        padding: dnd-calc(6, 16, em) dnd-calc(40, 16, em) dnd-calc(6, 16, em) dnd-calc(10, 16, em);
+        position: relative;
+
+        &:hover {
+
+            .option-toggle {
+
+                &:before {
+                    border-top-color: $teal-darken-20;
+                }
+            }
+        }
+    }
+
+    .option-toggle {
+        background: $brand-primary;
+        border-left: 1px solid $teal-darken-20;
+        bottom: 0;
+        position: absolute;
+        right: 0;
+        transition: all .15s ease-in-out;
+        top: 0;
+        width: dnd-calc(34, 16, em);
+
+        &:after, &:before {
+            border: 5px solid $teal-darken-10;
+            border-right-color: transparent;
+            border-left-color: transparent;
+            content: '';
+            display: block;
+            height: 0;
+            position: absolute;
+            right: dnd-calc(12, 16, em);
+            transition: all .15s ease-in-out;
+            width: 0;
+        }
+
+        &:after {
+            border-top-color: transparent;
+            display: none;
+            top: dnd-calc(9, 16, em);
+        }
+
+        &:before {
+            border-bottom-color: transparent;
+            top: dnd-calc(14, 16, em);
+        }
+    }
+
+    /*
+     * The list of options
+     */
+    .option-list {
+        border-top: 1px solid $teal-darken-20;
+        border-right: 1px solid $teal-darken-20;
+        border-left: 1px solid $teal-darken-20;
+        display: none;
+        left: 0;
+        position: absolute;
+        top: calc(100% - 1px);
+        width: 100%;
+        z-index: 100;
+    }
+
+    .option-list-item {
+        background: $white;
+
+        cursor: pointer;
+        border-bottom: 1px solid $teal-darken-20;
+
+        transition: all .15s ease-in-out;
+
+        &:hover {
+            background: $brand-primary;
+        }
+
+        .text-container {
+            border-left: 4px solid transparent;
+            padding: dnd-calc(6, 16, em) dnd-calc(10, 16, em);
+        }
+
+        &.selected {
+
+            .text-container {
+                background: lighten($black, 96%);
+                border-left-color: $teal-darken-20;
+                cursor: auto;
+            }
+
+            .option-text {
+                color: $teal-darken-20;
+                font-weight: bold;
+            }
+        }
+    }
+
+
+    /*
+     * The option dropdown is open
+     */
+    &.active {
+
+        .option-toggle {
+            background: $teal-darken-20;
+
+            &:after {
+                border-bottom-color: $white;
+                display: block;
+            }
+
+            &:before {
+                display: none;
+            }
+        }
+
+        .option-list {
+            display: block;
+        }
+    }
+}
