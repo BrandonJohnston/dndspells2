@@ -8,21 +8,19 @@
         <div class="mod-body">
             <div class="spell-list-filters">
                 <div class="spell-list-filter level-filter">
-                    <dnd-option-dropdown select-options="vm.spellOptionsDropdown.spellLevels"
-                        ng-model="vm.spellOptionsDropdown.selectedLevel"
-                        config="vm.spellOptionsDropdown.config"></dnd-option-dropdown>
+                    <dnd-option-dropdown select-options="vm.spellLevelsDropdown.spellLevels"
+                        ng-model="vm.spellLevelsDropdown.selectedLevel"
+                        config="vm.spellLevelsDropdown.config"></dnd-option-dropdown>
                 </div>
                 <div class="spell-list-filter school-filter">
-                    <span>school filter</span>
-                    <!--<dnd-option-dropdown select-options="vm.spellOptionsDropdown.spellLevels"
-                        ng-model="vm.spellOptionsDropdown.selectedLevel"
-                        config="vm.spellOptionsDropdown.config"></dnd-option-dropdown>-->
+                    <dnd-option-dropdown select-options="vm.spellSchoolsDropdown.spellSchools"
+                        ng-model="vm.spellSchoolsDropdown.selectedSchool"
+                        config="vm.spellSchoolsDropdown.config"></dnd-option-dropdown>
                 </div>
                 <div class="spell-list-filter class-filter">
-                    <span>class filter</span>
-                    <!--<dnd-option-dropdown select-options="vm.spellOptionsDropdown.spellLevels"
-                        ng-model="vm.spellOptionsDropdown.selectedLevel"
-                        config="vm.spellOptionsDropdown.config"></dnd-option-dropdown>-->
+                    <dnd-option-dropdown select-options="vm.spellClassesDropdown.spellClasses"
+                        ng-model="vm.spellClassesDropdown.selectedClass"
+                        config="vm.spellClassesDropdown.config"></dnd-option-dropdown>
                 </div>
             </div>
             <ul class="spell-list">
@@ -40,7 +38,11 @@
                         <p translate="dndspells.SPELL_LIST.SPELL_LEVEL"></p>
                     </div>
                 </li>
-                <li ng-repeat="spell in vm.spellsData | filter: {level: vm.spellOptionsDropdown.selectedLevel.value || undefined} | orderBy: vm.spellOrder track by $index" class="spell-list-row">
+                <li class="spell-list-row" ng-repeat="spell in vm.spellsData |
+                    filter: {level: vm.spellLevelsDropdown.selectedLevel.value || undefined} |
+                    filter: {school: vm.spellSchoolsDropdown.selectedSchool.value || undefined} |
+                    filter: {classes: vm.spellClassesDropdown.selectedClass.value || undefined} : true |
+                    orderBy: vm.spellOrder track by $index">
                     <div class="spell-list-col name-col">
                         <p>{{spell.name}}</p>
                     </div>

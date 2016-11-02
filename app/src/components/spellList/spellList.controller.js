@@ -33,7 +33,9 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
     // Setup variables
     vm.spellsData = null;
     vm.spellOrder = 'name';
-    vm.spellOptionsDropdown = {};
+    vm.spellLevelsDropdown = {};
+    vm.spellSchoolsDropdown = {};
+    vm.spellClassesDropdown = {};
 
 
     init();
@@ -41,29 +43,52 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
 
     function init() {
 
-        // Set the options dropdown config
-        vm.spellOptionsDropdown.config = {
+        // Setup the spell level options dropdown
+        vm.spellLevelsDropdown.config = {
             displayMode: 'block',
             label: $translate.instant('dndspells.SPELL_LIST.LEVEL_FILTER_LABEL')
         };
+        vm.spellLevelsDropdown.spellLevels = SpellsConstants.SPELL_LEVELS;
+        vm.spellLevelsDropdown.spellLevels[0].name = $translate.instant('dndspells.SPELL_LIST.CANTRIP');
 
 
-        // Get spell level options from constant
-        vm.spellOptionsDropdown.spellLevels = SpellsConstants.SPELL_LEVELS;
-        vm.spellOptionsDropdown.spellLevels[0].name = $translate.instant('dndspells.SPELL_LIST.CANTRIP');
+        // Setup the spell schools options dropdown
+        vm.spellSchoolsDropdown.config = {
+            displayMode: 'block',
+            label: $translate.instant('dndspells.SPELL_LIST.SCHOOL_FILTER_LABEL')
+        };
+        vm.spellSchoolsDropdown.spellSchools = SpellsConstants.SPELL_SCHOOLS;
+        angular.forEach(vm.spellSchoolsDropdown.spellSchools, function(school, key) {
+            vm.spellSchoolsDropdown.spellSchools[key].name = angular.copy(SpellListService.getSpellSchoolTranslation(school.name));
+        });
 
 
-        // Add the 'All' option
+        // Setup the spell classes options dropdown
+        vm.spellClassesDropdown.config = {
+            displayMode: 'block',
+            label: $translate.instant('dndspells.SPELL_LIST.CLASS_FILTER_LABEL')
+        };
+        vm.spellClassesDropdown.spellClasses = SpellsConstants.SPELL_CLASSES;
+        angular.forEach(vm.spellClassesDropdown.spellClasses, function(spellClass, key) {
+            vm.spellClassesDropdown.spellClasses[key].name = angular.copy(SpellListService.getSpellClassTranslation(spellClass.name));
+        });
+
+
+        // Add the 'All' option to each filter dropdown
         var option = {
-            id: '9',
+            id: '0',
             name: $translate.instant('dndspells.SPELL_LIST.ALL'),
             value: null
         };
-        vm.spellOptionsDropdown.spellLevels.unshift(option);
+        vm.spellLevelsDropdown.spellLevels.unshift(option);
+        vm.spellSchoolsDropdown.spellSchools.unshift(option);
+        vm.spellClassesDropdown.spellClasses.unshift(option);
 
 
         // Select the first option
-        vm.spellOptionsDropdown.selectedLevel = vm.spellOptionsDropdown.spellLevels[0];
+        vm.spellLevelsDropdown.selectedLevel = vm.spellLevelsDropdown.spellLevels[0];
+        vm.spellSchoolsDropdown.selectedSchool = vm.spellSchoolsDropdown.spellSchools[0];
+        vm.spellClassesDropdown.selectedClass = vm.spellClassesDropdown.spellClasses[0];
 
 
         // Get spells data from API

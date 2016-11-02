@@ -15,7 +15,8 @@
 
         var service = {
             getSpells5e: getSpells5e,
-            getSpellSchoolTranslation: getSpellSchoolTranslation
+            getSpellSchoolTranslation: getSpellSchoolTranslation,
+            getSpellClassTranslation: getSpellClassTranslation
         };
 
         return service;
@@ -41,6 +42,10 @@
             });
         }
 
+
+        /*
+         * getSpellSchoolTranslation - returns the translation for the specific spell school
+         */
         function getSpellSchoolTranslation(school) {
             switch(school) {
                 case 'Abjuration':
@@ -59,6 +64,39 @@
                     return $translate.instant('dndspells.SPELL_LIST.SCHOOL_NECROMANCY');
                 case 'Transmutation':
                     return $translate.instant('dndspells.SPELL_LIST.SCHOOL_TRANSMUTATION');
+            }
+        }
+
+
+        /*
+         * getSpellClassTranslation - returns the translation for the specific spell class
+         */
+        function getSpellClassTranslation(spellClass) {
+            switch(spellClass) {
+                case 'Barbarian':
+                    return $translate.instant('dndspells.CLASS_LIST.BARBARIAN');
+                case 'Bard':
+                    return $translate.instant('dndspells.CLASS_LIST.BARD');
+                case 'Cleric':
+                    return $translate.instant('dndspells.CLASS_LIST.CLERIC');
+                case 'Druid':
+                    return $translate.instant('dndspells.CLASS_LIST.DRUID');
+                case 'Fighter':
+                    return $translate.instant('dndspells.CLASS_LIST.FIGHTER');
+                case 'Monk':
+                    return $translate.instant('dndspells.CLASS_LIST.MONK');
+                case 'Paladin':
+                    return $translate.instant('dndspells.CLASS_LIST.PALADIN');
+                case 'Ranger':
+                    return $translate.instant('dndspells.CLASS_LIST.RANGER');
+                case 'Rogue':
+                    return $translate.instant('dndspells.CLASS_LIST.ROGUE');
+                case 'Sorcerer':
+                    return $translate.instant('dndspells.CLASS_LIST.SORCERER');
+                case 'Warlock':
+                    return $translate.instant('dndspells.CLASS_LIST.WARLOCK');
+                case 'Wizard':
+                    return $translate.instant('dndspells.CLASS_LIST.WIZARD');
             }
         }
 

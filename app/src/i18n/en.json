@@ -37,6 +37,20 @@
             "LOGIN": "Login",
             "ERROR_LOGIN_ERROR": "Your email or password is incorrect."
         },
+        "CLASS_LIST": {
+            "BARBARIAN": "Barbarian",
+            "BARD": "Bard",
+            "CLERIC": "Cleric",
+            "DRUID": "Druid",
+            "FIGHTER": "Fighter",
+            "MONK": "Monk",
+            "PALADIN": "Paladin",
+            "RANGER": "Ranger",
+            "ROGUE": "Rogue",
+            "SORCERER": "Sorcerer",
+            "WARLOCK": "Warlock",
+            "WIZARD": "Wizard"
+        },
         "SPELL_LIST": {
             "HEADER": "Spell List",
             "LEVEL_FILTER_LABEL": "Level:",

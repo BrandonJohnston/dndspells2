@@ -39,31 +39,12 @@ function dndOptionDropdownController($element, $scope, $log) {
 
 
     ngModel.$render = function() {
-        $log.debug('ngModel.$render');
 
-        var selected = ngModel.$viewValue;
         vm.selectedOption = ngModel.$viewValue;
 
-        $log.debug('selected:');
-        $log.debug(selected);
-
-        //$scope.treeSelectedItem = ngModel.$viewValue;
-        //if (selected && Array.isArray(selected) && selected.length > 0) {
-        //    selected = selected.map(function(element) {
-        //        return element.id;
-        //    });
-        //    $scope.selectedOptions = activateOptions(selected);
-        //} else if (selected && !Array.isArray(selected)) {
-        //    if (attrs.type === SelectConstant.type.TREE) {
-        //        $scope.selectedItem = activateTreeOptions($scope.selectOptions, selected.id);
-        //    } else {
-        //        $scope.selectedOption = activateOptions([selected.id])[0];
-        //    }
-        //}
-        //if (!ngModel.$viewValue) {
-        //    $scope.selectedOption = null;
-        //    $scope.selectedOptions.length = 0;
-        //}
+        if (!vm.selectedOption) {
+            vm.selectedOption = vm.selectOptions[0];
+        }
     };
 
 
