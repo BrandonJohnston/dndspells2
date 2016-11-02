@@ -23,13 +23,14 @@
         width: dnd-calc(2, 5, %);
     }
 
+    .school-col {
+        width: dnd-calc(2, 5, %);
+    }
+
     .level-col {
         width: dnd-calc(1, 5, %);
     }
 
-    .school-col {
-        width: dnd-calc(2, 5, %);
-    }
 
     /*
      * Header styles
@@ -40,11 +41,59 @@
 
         .spell-list-col {
             background: $brand-primary;
+            cursor: pointer;
             border-left: 1px solid $teal-darken-20;
+            padding-right: dnd-calc(30, 16, em);
+            position: relative;
 
             &:first-child {
                 border-left: none;
             }
+
+            &:after, &:before {
+                border: 5px solid $teal-darken-10;
+                border-right-color: transparent;
+                border-left-color: transparent;
+                content: '';
+                display: block;
+                height: 0;
+                position: absolute;
+                right: dnd-calc(10, 16, em);
+                width: 0;
+            }
+
+            &:after {
+                border-top-color: transparent;
+                top: dnd-calc(4, 16, em);
+            }
+
+            &:before {
+                border-bottom-color: transparent;
+                bottom: dnd-calc(4, 16, em);
+            }
+
+
+            &.activeUp {
+
+                &:after {
+                    border-bottom-color: $teal-darken-20;
+                }
+            }
+
+            &.activeDown {
+
+                &:before {
+                    border-top-color: $teal-darken-20;
+                }
+            }
+        }
+    }
+
+    .spell-list-row {
+        border-bottom: 1px solid $teal-darken-20;
+
+        &:nth-child(odd) {
+            background: lighten($black, 96%);
         }
     }
 }

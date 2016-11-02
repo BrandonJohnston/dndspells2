@@ -41,7 +41,16 @@
             "HEADER": "Spell List",
             "SPELL_NAME": "Spell Name",
             "SPELL_LEVEL": "Level",
-            "SPELL_SCHOOL": "School"
+            "SPELL_SCHOOL": "School",
+            "CANTRIP": "Cantrip",
+            "SCHOOL_ABJURATION": "Abjuration",
+            "SCHOOL_CONJURATION": "Conjuration",
+            "SCHOOL_DIVINATION": "Divination",
+            "SCHOOL_ENCHANTMENT": "Enchantment",
+            "SCHOOL_EVOCATION": "Evocation",
+            "SCHOOL_ILLUSION": "Illusion",
+            "SCHOOL_NECROMANCY": "Necromancy",
+            "SCHOOL_TRANSMUTATION": "Transmutation"
         }
     }
 }

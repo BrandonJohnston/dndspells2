@@ -11,25 +11,28 @@
             </div>
             <ul class="spell-list">
                 <li class="spell-list-header">
-                    <div class="spell-list-col name-col">
+                    <div class="spell-list-col name-col" ng-click="vm.setOrderProp('name')"
+                         ng-class="{activeUp: vm.spellOrder === 'name', activeDown: vm.spellOrder === '-name'}">
                         <p translate="dndspells.SPELL_LIST.SPELL_NAME"></p>
                     </div>
-                    <div class="spell-list-col level-col">
-                        <p translate="dndspells.SPELL_LIST.SPELL_LEVEL"></p>
-                    </div>
-                    <div class="spell-list-col school-col">
+                    <div class="spell-list-col school-col" ng-click="vm.setOrderProp('school')"
+                         ng-class="{activeUp: vm.spellOrder === 'school', activeDown: vm.spellOrder === '-school'}">
                         <p translate="dndspells.SPELL_LIST.SPELL_SCHOOL"></p>
                     </div>
+                    <div class="spell-list-col level-col" ng-click="vm.setOrderProp('level')"
+                         ng-class="{activeUp: vm.spellOrder === 'level', activeDown: vm.spellOrder === '-level'}">
+                        <p translate="dndspells.SPELL_LIST.SPELL_LEVEL"></p>
+                    </div>
                 </li>
-                <li ng-repeat="spell in vm.spellsData track by $index" class="spell-list-row">
+                <li ng-repeat="spell in vm.spellsData | orderBy: vm.spellOrder track by $index" class="spell-list-row">
                     <div class="spell-list-col name-col">
                         <p>{{spell.name}}</p>
                     </div>
-                    <div class="spell-list-col level-col">
-                        <p>{{spell.level}}</p>
+                    <div class="spell-list-col name-col">
+                        <p>{{vm.getSchoolTranslation(spell.school)}}</p>
                     </div>
-                    <div class="spell-list-col school-col">
-                        <p>{{spell.school}}</p>
+                    <div class="spell-list-col level-col">
+                        <p>{{vm.getLevelTranslation(spell.level)}}</p>
                     </div>
                 </li>
             </ul>

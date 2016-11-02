@@ -8,12 +8,14 @@ angular
 
 
 spellListDirectiveController.$inject = [
+    '$scope',
     '$log',
+    '$translate',
     'SpellListService'
 ];
 
 
-function spellListDirectiveController($log, SpellListService) {
+function spellListDirectiveController($scope, $log, $translate, SpellListService) {
 
     var vm = this;
     $log.debug('spellListDirectiveController');
@@ -21,10 +23,14 @@ function spellListDirectiveController($log, SpellListService) {
 
     // Setup functions
     vm.getSpells = getSpells;
+    vm.getSchoolTranslation = getSchoolTranslation;
+    vm.getLevelTranslation = getLevelTranslation;
+    vm.setOrderProp = setOrderProp;
 
 
     // Setup variables
     vm.spellsData = null;
+    vm.spellOrder = 'name';
 
 
     getSpells();
@@ -44,4 +50,37 @@ function spellListDirectiveController($log, SpellListService) {
             $log.debug(vm.spellsData);
         });
     }
+
+
+    /*
+     * getSepllSchoolLevel - returns text for the spell school and level
+     */
+    function getSchoolTranslation(school) {
+
+        return SpellListService.getSpellSchoolTranslation(school);
+    }
+
+
+    /*
+     * getLevelTranslation - returns text for cantrip or the spell level number
+     * helps ordering by level so that text displays 'Cantrip' but shows first in alpha-numeric ordering
+     */
+    function getLevelTranslation(level) {
+
+        return level === '0' ? $translate.instant('dndspells.SPELL_LIST.CANTRIP') : level;
+    }
+
+
+    /*
+     * setOrderProp - change the spell list ordering property
+     */
+    function setOrderProp(prop) {
+
+        $log.debug('setOrderProp() ' + prop);
+
+        vm.spellOrder = prop === vm.spellOrder ? '-' + prop : prop;
+
+        $log.debug('updated spellOrder: ' + vm.spellOrder);
+    }
+
 }
