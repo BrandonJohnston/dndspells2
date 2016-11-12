@@ -56,6 +56,11 @@
                     id: '9',
                     name: '8',
                     value: '8'
+                },
+                {
+                    id: '10',
+                    name: '9',
+                    value: '9'
                 }
             ],
             "SPELL_SCHOOLS": [

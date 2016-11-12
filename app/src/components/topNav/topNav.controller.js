@@ -35,6 +35,9 @@ function topNavController($rootScope, $log, $state, UserService) {
      * navigate - sends the user to homepage or dashboard depending on logged in status
      */
     function navigate() {
+
+        $log.debug('topNavController :: navigate()');
+
         vm.userData = UserService.getUserData();
 
         if (vm.userData) {

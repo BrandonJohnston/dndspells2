@@ -42,6 +42,27 @@ angular.module('dnd.ui', [
                     controller: 'spellListController',
                     controllerAs: 'vm',
                     stateLabel: 'dndspells.TITLE'
+                })
+                .state('spellbook', {
+                    url: '/spellbook',
+                    templateUrl: 'views/spellbook/5e/spellbookView.html',
+                    controller: 'spellbookController',
+                    controllerAs: 'vm',
+                    stateLabel: 'dndspells.TITLE'
+                })
+                .state('spellbook.create', {
+                    url: '/create',
+                    templateUrl: 'views/spellbook/5e/create/createSpellbookView.html',
+                    controller: 'createSpellbookController',
+                    controllerAs: 'vm',
+                    stateLabel: 'dndspells.TITLE'
+                })
+                .state('spellbook.view', {
+                    url: '/view?spellbookId',
+                    templateUrl: 'views/spellbook/5e/view/viewSpellbookView.html',
+                    controller: 'viewSpellbookController',
+                    controllerAs: 'vm',
+                    stateLabel: 'dndspells.TITLE'
                 });
 
 

@@ -14,7 +14,12 @@
                 "HEADER": "View",
                 "HOME": "Home",
                 "DASHBOARD": "Dashboard",
-                "SPELL_LIST": "Spell List"
+                "SPELL_LIST": "Spell List",
+                "SPELLBOOKS": "Spellbooks"
+            },
+            "CREATE": {
+                "HEADER": "Create",
+                "SPELLBOOK": "Spellbook"
             }
         },
         "HOME": {
@@ -69,6 +74,11 @@
             "SCHOOL_ILLUSION": "Illusion",
             "SCHOOL_NECROMANCY": "Necromancy",
             "SCHOOL_TRANSMUTATION": "Transmutation"
+        },
+        "CREATE_SPELLBOOK": {
+            "HEADER": "Create Spellbook",
+            "CHAR_NAME_LABEL": "Character Name",
+            "ERROR_CHAR_NAME_REQUIRED": "A name is required."
         }
     }
 }

@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html ng-app="dnd.ui" ng-controller="mainController as vm">
     <head>
+        <base href="/" />
         <title>DnD Spells</title>
-        <link rel=stylesheet href="vendor/vendor.css">
-        <link rel=stylesheet href="static/sass/dnd.min.css">
+        <link rel=stylesheet href="http://127.0.0.1:8080/vendor/vendor.css" />
+        <link rel=stylesheet href="http://127.0.0.1:8080/static/sass/dnd.min.css" />
     </head>
     <body>
         <div class="page-frame" ng-class="{'active': vm.isSideboardOpen}">
             <dnd-top-nav></dnd-top-nav>
             <dnd-sideboard></dnd-sideboard>
-            <ui-view class="content-frame"></ui-view>
+            <div ui-view="" class="content-frame"></div>
         </div>
 
         <!-- Single vendor.js file for all third party dependencies -->
-        <script type=text/javascript src="vendor/vendor.js"></script>
+        <script type=text/javascript src="http://127.0.0.1:8080/vendor/vendor.js"></script>
 
         <!-- The JS file for this application -->
-        <script type=text/javascript src="dnd-ui.js"></script>
+        <script type=text/javascript src="http://127.0.0.1:8080/dnd-ui.js"></script>
     </body>
 </html>

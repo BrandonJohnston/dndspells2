@@ -27,10 +27,10 @@ function signupController($scope, $log, $state, UserService) {
 
     // Setup variables
     vm.signupData = {
-        'userName': null,
-        'userEmail': null,
-        'userPassword': null,
-        'signupError': false
+        userName: null,
+        userEmail: null,
+        userPassword: null,
+        signupError: false
     };
 
 

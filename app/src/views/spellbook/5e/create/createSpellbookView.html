@@ -1,0 +1,26 @@
+<div class="create-spellbook-module general-module">
+    <div class="mod-header-wrapper">
+        <div class="mod-header">
+            <h4 translate="dndspells.CREATE_SPELLBOOK.HEADER"></h4>
+        </div>
+    </div>
+    <div class="mod-body-wrapper">
+        <div class="mod-body">
+            <form class="create-char-form" name="createCharForm" novalidate>
+                <ul>
+                    <li class="char-name-item">
+                        <input type="text" placeholder="{{'dndspells.CREATE_SPELLBOOK.CHAR_NAME_LABEL' | translate}}" name="charName" ng-model="vm.spellbookData.charName"
+                               required ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 250, 'blur': 0 } }"
+                               ng-class="{'ng-invalid': vm.spellbookData.formError}" ng-focus="vm.spellbookData.formError=false" />
+                        <div class="form-errors" ng-if="createCharForm.charName.$invalid && createCharForm.charName.$dirty">
+                            <p class="error" ng-if="createCharForm.charName.$error.required && createCharForm.charName.$dirty" translate="dndspells.CREATE_SPELLBOOK.ERROR_CHAR_NAME_REQUIRED"></p>
+                        </div>
+                    </li>
+                    <li class="char-class-item">
+                        character class dropdown
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</div>

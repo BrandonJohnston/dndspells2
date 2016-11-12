@@ -9,9 +9,14 @@
         .module('dnd.ui')
         .factory('SpellListService', SpellListService);
 
-    SpellListService.$inject = ['$log', '$translate', '$http'];
+    SpellListService.$inject = [
+        '$log',
+        '$translate',
+        '$http',
+        '$filter'
+    ];
 
-    function SpellListService($log, $translate, $http) {
+    function SpellListService($log, $translate, $http, $filter) {
 
         var service = {
             getSpells5e: getSpells5e,
@@ -47,22 +52,25 @@
          * getSpellSchoolTranslation - returns the translation for the specific spell school
          */
         function getSpellSchoolTranslation(school) {
-            switch(school) {
-                case 'Abjuration':
+
+            var schoolVar = $filter('lowercase')(school);
+
+            switch(schoolVar) {
+                case 'abjuration':
                     return $translate.instant('dndspells.SPELL_LIST.SCHOOL_ABJURATION');
-                case 'Conjuration':
+                case 'conjuration':
                     return $translate.instant('dndspells.SPELL_LIST.SCHOOL_CONJURATION');
-                case 'Divination':
+                case 'divination':
                     return $translate.instant('dndspells.SPELL_LIST.SCHOOL_DIVINATION');
-                case 'Enchantment':
+                case 'enchantment':
                     return $translate.instant('dndspells.SPELL_LIST.SCHOOL_ENCHANTMENT');
-                case 'Evocation':
+                case 'evocation':
                     return $translate.instant('dndspells.SPELL_LIST.SCHOOL_EVOCATION');
-                case 'Illusion':
+                case 'illusion':
                     return $translate.instant('dndspells.SPELL_LIST.SCHOOL_ILLUSION');
-                case 'Necromancy':
+                case 'necromancy':
                     return $translate.instant('dndspells.SPELL_LIST.SCHOOL_NECROMANCY');
-                case 'Transmutation':
+                case 'transmutation':
                     return $translate.instant('dndspells.SPELL_LIST.SCHOOL_TRANSMUTATION');
             }
         }
@@ -72,30 +80,33 @@
          * getSpellClassTranslation - returns the translation for the specific spell class
          */
         function getSpellClassTranslation(spellClass) {
-            switch(spellClass) {
-                case 'Barbarian':
+
+            var classVar = $filter('lowercase')(spellClass);
+
+            switch(classVar) {
+                case 'barbarian':
                     return $translate.instant('dndspells.CLASS_LIST.BARBARIAN');
-                case 'Bard':
+                case 'bard':
                     return $translate.instant('dndspells.CLASS_LIST.BARD');
-                case 'Cleric':
+                case 'cleric':
                     return $translate.instant('dndspells.CLASS_LIST.CLERIC');
-                case 'Druid':
+                case 'druid':
                     return $translate.instant('dndspells.CLASS_LIST.DRUID');
-                case 'Fighter':
+                case 'fighter':
                     return $translate.instant('dndspells.CLASS_LIST.FIGHTER');
-                case 'Monk':
+                case 'monk':
                     return $translate.instant('dndspells.CLASS_LIST.MONK');
-                case 'Paladin':
+                case 'paladin':
                     return $translate.instant('dndspells.CLASS_LIST.PALADIN');
-                case 'Ranger':
+                case 'ranger':
                     return $translate.instant('dndspells.CLASS_LIST.RANGER');
-                case 'Rogue':
+                case 'rogue':
                     return $translate.instant('dndspells.CLASS_LIST.ROGUE');
-                case 'Sorcerer':
+                case 'sorcerer':
                     return $translate.instant('dndspells.CLASS_LIST.SORCERER');
-                case 'Warlock':
+                case 'warlock':
                     return $translate.instant('dndspells.CLASS_LIST.WARLOCK');
-                case 'Wizard':
+                case 'wizard':
                     return $translate.instant('dndspells.CLASS_LIST.WIZARD');
             }
         }
