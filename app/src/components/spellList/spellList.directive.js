@@ -11,7 +11,8 @@ angular
                 scope: {
                     listMode: '=?',
                     listClassFilter: '=?',
-                    listDisabled: '=?'
+                    listDisabled: '=?',
+                    selectedSpells: '=?'
                 },
                 templateUrl: 'components/spellList/spellListView.html',
                 controller: 'spellListDirectiveController',

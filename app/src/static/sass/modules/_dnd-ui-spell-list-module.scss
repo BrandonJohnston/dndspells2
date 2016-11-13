@@ -120,4 +120,22 @@
             background: lighten($black, 96%);
         }
     }
+
+
+    /*
+     * Edit Mode
+     */
+    &.editMode {
+
+        .spell-list-filters {
+
+            .spell-list-filter {
+                width: dnd-calc(1, 2, %);
+            }
+
+            .school-filter {
+                padding-right: 0;
+            }
+        }
+    }
 }

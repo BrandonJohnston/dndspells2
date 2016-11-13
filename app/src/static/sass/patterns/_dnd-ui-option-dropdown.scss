@@ -159,30 +159,30 @@
     &.disabled {
 
         .dropdown-label {
-            color: $gray;
+            color: $gray-darken-20;
         }
 
         .selected-option {
-            border-color: $gray;
+            border-color: $gray-darken-20;
 
             &:hover {
 
                 .option-toggle:before {
-                    border-top-color: $gray;
+                    border-top-color: $gray-darken-20;
                 }
             }
         }
 
         .selected-option-text {
-            color: $gray;
+            color: $gray-darken-20;
         }
 
         .option-toggle {
-            background: $gray-darken-20;
-            border-left-color: $gray;
+            background: $gray;
+            border-left-color: $gray-darken-20;
 
             &:before {
-                border-top-color: $gray;
+                border-top-color: $gray-darken-20;
             }
         }
 

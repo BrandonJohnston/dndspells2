@@ -25,8 +25,9 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
     vm.getSpells = getSpells;
     vm.getSchoolTranslation = getSchoolTranslation;
     vm.getLevelTranslation = getLevelTranslation;
-    vm.spellOptionDropdownChanged = spellOptionDropdownChanged;
     vm.setOrderProp = setOrderProp;
+    vm.toggleSpellSelected = toggleSpellSelected;
+    vm.checkSpellSelected = checkSpellSelected;
 
 
     // Setup variables
@@ -36,10 +37,14 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
         listDisabled: $scope.listDisabled || false
     };
     vm.spellsData = null;
+    vm.selectedSpells = $scope.selectedSpells || [];
     vm.spellOrder = 'name';
     vm.spellLevelsDropdown = {};
     vm.spellSchoolsDropdown = {};
     vm.spellClassesDropdown = {};
+
+    $log.debug('spellListController :: inut selectedSpells:');
+    $log.debug(vm.selectedSpells);
 
 
     // Watch for changes to listClassFilter
@@ -117,23 +122,62 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
     /*
      * setOrderProp - change the spell list ordering property
      */
-    function spellOptionDropdownChanged(option) {
+    function setOrderProp(prop) {
 
-        $log.debug('spellOptionDropdownChanged() ' + option);
-
+        vm.spellOrder = prop === vm.spellOrder ? '-' + prop : prop;
     }
 
 
     /*
-     * setOrderProp - change the spell list ordering property
+     * toggleSpellSelected - add / remove spell from selected spell list
      */
-    function setOrderProp(prop) {
+    function toggleSpellSelected(spellObj) {
 
-        $log.debug('setOrderProp() ' + prop);
+        $log.debug('toggleSpellSelected(spellObj) ');
+        $log.debug(spellObj);
 
-        vm.spellOrder = prop === vm.spellOrder ? '-' + prop : prop;
+        var found = false;
 
-        $log.debug('updated spellOrder: ' + vm.spellOrder);
+        found = spellNeedleSearch(spellObj);
+
+        if (found.found) {
+            vm.selectedSpells.splice(found.key, 1);
+        } else {
+            vm.selectedSpells.push(spellObj);
+        }
+
+        $log.debug('selected spells:');
+        $log.debug(vm.selectedSpells);
+    }
+
+
+    function checkSpellSelected(spellObj) {
+
+        var spell = spellNeedleSearch(spellObj);
+
+        return spell.found;
+    }
+
+
+    /*
+     * checkSpellSelected - return true / false if the spell is selected or not
+     */
+    function spellNeedleSearch(spellObj) {
+
+        var returnSpell = {
+            found: false,
+            key: null
+        };
+
+        angular.forEach(vm.selectedSpells, function(spell, key) {
+
+            if (spell.id === spellObj.id) {
+                returnSpell.found = true;
+                returnSpell.key = key;
+            }
+        });
+
+        return returnSpell;
     }
 
 }
