@@ -13,6 +13,13 @@ form {
         }
     }
 
+    .input-label {
+        display: block;
+        font-size: dnd-calc(12, 16, em);
+        font-weight: bold;
+        padding-bottom: dnd-calc(6, 12, em);
+    }
+
     .form-errors {
         padding: dnd-calc(10, 16, em) 0;
     }

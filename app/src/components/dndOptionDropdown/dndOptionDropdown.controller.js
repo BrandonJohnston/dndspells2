@@ -27,6 +27,7 @@ function dndOptionDropdownController($element, $scope, $log) {
 
     // Setup variables
     var ngModel = $element.controller('ngModel');
+    vm.dropdownDisabled = $scope.dropdownDisabled || false;
     vm.selectConfig = $scope.config || null;
     vm.selectOptions = $scope.selectOptions || [];
     vm.selectedOption = null;
@@ -36,6 +37,12 @@ function dndOptionDropdownController($element, $scope, $log) {
     if (!ngModel) {
         return;
     }
+
+
+    // Watch for changes to dropdownDisabled
+    $scope.$watch('dropdownDisabled', function() {
+        vm.dropdownDisabled = angular.copy($scope.dropdownDisabled) || false;
+    });
 
 
     ngModel.$render = function() {
@@ -53,6 +60,12 @@ function dndOptionDropdownController($element, $scope, $log) {
      */
     function toggleOptionList() {
         $log.debug('dndOptionDropdownController::toggleOptionList():');
+        $log.debug('vm.dropdownDisabled: ' + vm.dropdownDisabled);
+
+        // Do not open if the dropdown is disabled
+        if (vm.dropdownDisabled) {
+            return;
+        }
 
         // Assign the new option as selected
         vm.isListOpen = !vm.isListOpen;

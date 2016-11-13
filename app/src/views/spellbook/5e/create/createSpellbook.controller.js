@@ -24,7 +24,7 @@ function createSpellbookController($scope, $log, $translate, UserService, SpellL
 
 
     // Setup functions
-
+    vm.isListDisabled = isListDisabled;
 
 
     // Setup variables
@@ -77,5 +77,16 @@ function createSpellbookController($scope, $log, $translate, UserService, SpellL
     function checkUserData() {
 
         vm.userData = UserService.getUserData() || null;
+    }
+
+
+    /*
+     * isListDisabled - returns true / false if spell list should be disabled
+     */
+    function isListDisabled() {
+
+        return vm.spellClassesDropdown.selectedClass &&
+                vm.spellClassesDropdown.selectedClass.value !== '0' &&
+                vm.spellClassesDropdown.selectedClass.value ? false : true;
     }
 }

@@ -77,7 +77,8 @@
         },
         "CREATE_SPELLBOOK": {
             "HEADER": "Create Spellbook",
-            "CHAR_NAME_LABEL": "Character Name",
+            "CHAR_NAME_LABEL": "Character Name:",
+            "CHAR_NAME_PLACEHOLDER": "Character Name",
             "ERROR_CHAR_NAME_REQUIRED": "A name is required."
         }
     }

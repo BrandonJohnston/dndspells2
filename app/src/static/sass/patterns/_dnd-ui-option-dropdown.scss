@@ -151,4 +151,43 @@
             display: block;
         }
     }
+
+
+    /*
+     * The option dropdown is disabled
+     */
+    &.disabled {
+
+        .dropdown-label {
+            color: $gray;
+        }
+
+        .selected-option {
+            border-color: $gray;
+
+            &:hover {
+
+                .option-toggle:before {
+                    border-top-color: $gray;
+                }
+            }
+        }
+
+        .selected-option-text {
+            color: $gray;
+        }
+
+        .option-toggle {
+            background: $gray-darken-20;
+            border-left-color: $gray;
+
+            &:before {
+                border-top-color: $gray;
+            }
+        }
+
+        .selected-option {
+            cursor: default;
+        }
+    }
 }

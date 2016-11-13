@@ -9,7 +9,9 @@ angular
             return {
                 restrict: 'E',
                 scope: {
-                    listMode: '=?'
+                    listMode: '=?',
+                    listClassFilter: '=?',
+                    listDisabled: '=?'
                 },
                 templateUrl: 'components/spellList/spellListView.html',
                 controller: 'spellListDirectiveController',

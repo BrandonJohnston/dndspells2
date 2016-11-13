@@ -1,26 +1,29 @@
-<div class="spell-list-module general-module" ng-class="{editMode: vm.listMode === 'edit'}">
-    <div class="mod-header-wrapper" ng-if="vm.listMode === 'view'">
+<div class="spell-list-module general-module" ng-class="{editMode: vm.listConfig.listMode === 'edit'}">
+    <div class="mod-header-wrapper" ng-if="vm.listConfig.listMode === 'view'">
         <div class="mod-header">
             <h4 translate="dndspells.SPELL_LIST.HEADER"></h4>
         </div>
     </div>
     <div class="mod-body-wrapper">
-        <div class="mod-body">
+        <div class="mod-body" ng-class="{disabled: vm.listConfig.listDisabled}">
             <div class="spell-list-filters">
                 <div class="spell-list-filter level-filter">
                     <dnd-option-dropdown select-options="vm.spellLevelsDropdown.spellLevels"
                         ng-model="vm.spellLevelsDropdown.selectedLevel"
-                        config="vm.spellLevelsDropdown.config"></dnd-option-dropdown>
+                        config="vm.spellLevelsDropdown.config"
+                        dropdown-disabled="vm.listConfig.listDisabled"></dnd-option-dropdown>
                 </div>
                 <div class="spell-list-filter school-filter">
                     <dnd-option-dropdown select-options="vm.spellSchoolsDropdown.spellSchools"
                         ng-model="vm.spellSchoolsDropdown.selectedSchool"
-                        config="vm.spellSchoolsDropdown.config"></dnd-option-dropdown>
+                        config="vm.spellSchoolsDropdown.config"
+                        dropdown-disabled="vm.listConfig.listDisabled"></dnd-option-dropdown>
                 </div>
-                <div class="spell-list-filter class-filter" ng-if="vm.listMode === 'view'">
+                <div class="spell-list-filter class-filter" ng-if="vm.listConfig.listMode === 'view'">
                     <dnd-option-dropdown select-options="vm.spellClassesDropdown.spellClasses"
                         ng-model="vm.spellClassesDropdown.selectedClass"
-                        config="vm.spellClassesDropdown.config"></dnd-option-dropdown>
+                        config="vm.spellClassesDropdown.config"
+                        dropdown-disabled="vm.listConfig.listDisabled"></dnd-option-dropdown>
                 </div>
             </div>
             <ul class="spell-list">
@@ -41,7 +44,7 @@
                 <li class="spell-list-row" ng-repeat="spell in vm.spellsData |
                     filter: {level: vm.spellLevelsDropdown.selectedLevel.value || undefined} |
                     filter: {school: vm.spellSchoolsDropdown.selectedSchool.value || undefined} |
-                    filter: {classes: vm.spellClassesDropdown.selectedClass.value || undefined} : true |
+                    filter: {classes: vm.spellClassesDropdown.selectedClass.value || vm.listConfig.listClassFilter.value || undefined} : true |
                     orderBy: vm.spellOrder track by $index">
                     <div class="spell-list-col name-col">
                         <p>{{spell.name}}</p>

@@ -11,12 +11,11 @@ spellListDirectiveController.$inject = [
     '$scope',
     '$log',
     '$translate',
-    'SpellListService',
-    'SpellsConstants'
+    'SpellListService'
 ];
 
 
-function spellListDirectiveController($scope, $log, $translate, SpellListService, SpellsConstants) {
+function spellListDirectiveController($scope, $log, $translate, SpellListService) {
 
     var vm = this;
     $log.debug('spellListDirectiveController');
@@ -31,12 +30,27 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
 
 
     // Setup variables
-    vm.listMode = $scope.listMode || 'view';
+    vm.listConfig = {
+        listMode: $scope.listMode || 'view',
+        listClassFilter: $scope.listClassFilter || null,
+        listDisabled: $scope.listDisabled || false
+    };
     vm.spellsData = null;
     vm.spellOrder = 'name';
     vm.spellLevelsDropdown = {};
     vm.spellSchoolsDropdown = {};
     vm.spellClassesDropdown = {};
+
+
+    // Watch for changes to listClassFilter
+    $scope.$watch('listClassFilter', function() {
+        vm.listConfig.listClassFilter = angular.copy($scope.listClassFilter) || null;
+    });
+
+    // Watch for changes to listDisabled
+    $scope.$watch('listDisabled', function() {
+        vm.listConfig.listDisabled = angular.copy($scope.listDisabled) || false;
+    });
 
 
     init();
@@ -55,7 +69,7 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
         vm.spellLevelsDropdown = angular.copy(SpellListService.spellLevelConfig(option));
         vm.spellSchoolsDropdown = angular.copy(SpellListService.spellSchoolConfig(option));
 
-        if (vm.listMode !== 'edit') {
+        if (vm.listConfig.listMode !== 'edit') {
             vm.spellClassesDropdown = angular.copy(SpellListService.spellClassConfig(option));
         }
 

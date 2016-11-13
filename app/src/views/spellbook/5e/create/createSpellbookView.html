@@ -9,14 +9,15 @@
             <form class="create-char-form" name="createCharForm" novalidate>
                 <ul>
                     <li class="char-name-item">
-                        <input type="text" placeholder="{{'dndspells.CREATE_SPELLBOOK.CHAR_NAME_LABEL' | translate}}" name="charName" ng-model="vm.spellbookData.charName"
+                        <label class="input-label" translate="dndspells.CREATE_SPELLBOOK.CHAR_NAME_LABEL"></label>
+                        <input type="text" placeholder="{{'dndspells.CREATE_SPELLBOOK.CHAR_NAME_PLACEHOLDER' | translate}}" name="charName" ng-model="vm.spellbookData.charName"
                                required ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 250, 'blur': 0 } }"
                                ng-class="{'ng-invalid': vm.spellbookData.formError}" ng-focus="vm.spellbookData.formError=false" />
                         <div class="form-errors" ng-if="createCharForm.charName.$invalid && createCharForm.charName.$dirty">
                             <p class="error" ng-if="createCharForm.charName.$error.required && createCharForm.charName.$dirty" translate="dndspells.CREATE_SPELLBOOK.ERROR_CHAR_NAME_REQUIRED"></p>
                         </div>
                     </li>
-                    <li class="char-class-item">
+                    <li class="char-class-item" ng-if="vm.spellClassesDropdown.spellClasses">
                         <dnd-option-dropdown select-options="vm.spellClassesDropdown.spellClasses"
                             ng-model="vm.spellClassesDropdown.selectedClass"
                             config="vm.spellClassesDropdown.config"></dnd-option-dropdown>
@@ -25,5 +26,7 @@
             </form>
         </div>
     </div>
-    <dnd-spell-list list-mode="vm.spellListConfig.mode"></dnd-spell-list>
+    <dnd-spell-list list-mode="vm.spellListConfig.mode"
+                    list-class-filter="vm.spellClassesDropdown.selectedClass"
+                    list-disabled="vm.isListDisabled()"></dnd-spell-list>
 </div>

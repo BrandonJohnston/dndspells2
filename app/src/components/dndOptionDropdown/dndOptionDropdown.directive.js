@@ -13,7 +13,8 @@ angular
                     changeFn: "&?",
                     config: '=?',
                     placeholder: "@?",
-                    selectOptions: "="
+                    selectOptions: "=",
+                    dropdownDisabled: "=?"
                 },
                 templateUrl: 'components/dndOptionDropdown/dndOptionDropdownView.html',
                 controller: 'dndOptionDropdownController',
