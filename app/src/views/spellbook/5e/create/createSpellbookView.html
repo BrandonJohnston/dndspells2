@@ -17,10 +17,13 @@
                         </div>
                     </li>
                     <li class="char-class-item">
-                        character class dropdown
+                        <dnd-option-dropdown select-options="vm.spellClassesDropdown.spellClasses"
+                            ng-model="vm.spellClassesDropdown.selectedClass"
+                            config="vm.spellClassesDropdown.config"></dnd-option-dropdown>
                     </li>
                 </ul>
             </form>
         </div>
     </div>
+    <dnd-spell-list list-mode="vm.spellListConfig.mode"></dnd-spell-list>
 </div>

@@ -31,6 +31,7 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
 
 
     // Setup variables
+    vm.listMode = $scope.listMode || 'view';
     vm.spellsData = null;
     vm.spellOrder = 'name';
     vm.spellLevelsDropdown = {};
@@ -43,52 +44,20 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
 
     function init() {
 
-        // Setup the spell level options dropdown
-        vm.spellLevelsDropdown.config = {
-            displayMode: 'block',
-            label: $translate.instant('dndspells.SPELL_LIST.LEVEL_FILTER_LABEL')
-        };
-        vm.spellLevelsDropdown.spellLevels = SpellsConstants.SPELL_LEVELS;
-        vm.spellLevelsDropdown.spellLevels[0].name = $translate.instant('dndspells.SPELL_LIST.CANTRIP');
-
-
-        // Setup the spell schools options dropdown
-        vm.spellSchoolsDropdown.config = {
-            displayMode: 'block',
-            label: $translate.instant('dndspells.SPELL_LIST.SCHOOL_FILTER_LABEL')
-        };
-        vm.spellSchoolsDropdown.spellSchools = SpellsConstants.SPELL_SCHOOLS;
-        angular.forEach(vm.spellSchoolsDropdown.spellSchools, function(school, key) {
-            vm.spellSchoolsDropdown.spellSchools[key].name = angular.copy(SpellListService.getSpellSchoolTranslation(school.name));
-        });
-
-
-        // Setup the spell classes options dropdown
-        vm.spellClassesDropdown.config = {
-            displayMode: 'block',
-            label: $translate.instant('dndspells.SPELL_LIST.CLASS_FILTER_LABEL')
-        };
-        vm.spellClassesDropdown.spellClasses = SpellsConstants.SPELL_CLASSES;
-        angular.forEach(vm.spellClassesDropdown.spellClasses, function(spellClass, key) {
-            vm.spellClassesDropdown.spellClasses[key].name = angular.copy(SpellListService.getSpellClassTranslation(spellClass.name));
-        });
-
-
         // Add the 'All' option to each filter dropdown
         var option = {
             id: '0',
             name: $translate.instant('dndspells.SPELL_LIST.ALL'),
             value: null
         };
-        vm.spellLevelsDropdown.spellLevels.unshift(option);
-        vm.spellSchoolsDropdown.spellSchools.unshift(option);
-        vm.spellClassesDropdown.spellClasses.unshift(option);
 
 
-        // Select the first option
-        vm.spellLevelsDropdown.selectedLevel = vm.spellLevelsDropdown.spellLevels[0];
-        vm.spellSchoolsDropdown.selectedSchool = vm.spellSchoolsDropdown.spellSchools[0];
-        vm.spellClassesDropdown.selectedClass = vm.spellClassesDropdown.spellClasses[0];
+        vm.spellLevelsDropdown = angular.copy(SpellListService.spellLevelConfig(option));
+        vm.spellSchoolsDropdown = angular.copy(SpellListService.spellSchoolConfig(option));
+
+        if (vm.listMode !== 'edit') {
+            vm.spellClassesDropdown = angular.copy(SpellListService.spellClassConfig(option));
+        }
 
 
         // Get spells data from API

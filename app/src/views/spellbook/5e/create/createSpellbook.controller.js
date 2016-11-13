@@ -10,11 +10,14 @@ angular
 createSpellbookController.$inject = [
     '$scope',
     '$log',
-    'UserService'
+    '$translate',
+    'UserService',
+    'SpellListService',
+    'SpellsConstants'
 ];
 
 
-function createSpellbookController($scope, $log, UserService) {
+function createSpellbookController($scope, $log, $translate, UserService, SpellListService, SpellsConstants) {
 
     var vm = this;
     $log.debug("createSpellbookController");
@@ -25,7 +28,15 @@ function createSpellbookController($scope, $log, UserService) {
 
 
     // Setup variables
+    var translationKeys = [
+        'dndspells.SPELL_LIST.CLASS_FILTER_LABEL',
+        'dndspells.SPELL_LIST.ALL'
+    ];
     vm.userData = null;
+    vm.spellListConfig = {
+        mode: 'edit'
+    };
+    vm.spellClassesDropdown = {};
     vm.spellbookData = {
         charName: null,
         charClass: null,
@@ -36,10 +47,28 @@ function createSpellbookController($scope, $log, UserService) {
     };
 
 
+    $translate(translationKeys).then(function(translations) {
+        init(translations);
+    });
+
+
     /*
-     * Get any user data
+     * Initialize
      */
-    checkUserData();
+    function init(translations) {
+
+        // Add the 'All' option to the filter dropdown
+        var option = {
+            id: '0',
+            name: translations['dndspells.SPELL_LIST.ALL'],
+            value: null
+        };
+
+        vm.spellClassesDropdown = angular.copy(SpellListService.spellClassConfig(option));
+
+        // Get user data
+        checkUserData();
+    }
 
 
     /*

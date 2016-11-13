@@ -13,15 +13,19 @@
         '$log',
         '$translate',
         '$http',
-        '$filter'
+        '$filter',
+        'SpellsConstants'
     ];
 
-    function SpellListService($log, $translate, $http, $filter) {
+    function SpellListService($log, $translate, $http, $filter, SpellsConstants) {
 
         var service = {
             getSpells5e: getSpells5e,
             getSpellSchoolTranslation: getSpellSchoolTranslation,
-            getSpellClassTranslation: getSpellClassTranslation
+            getSpellClassTranslation: getSpellClassTranslation,
+            spellLevelConfig: spellLevelConfig,
+            spellSchoolConfig: spellSchoolConfig,
+            spellClassConfig: spellClassConfig
         };
 
         return service;
@@ -109,6 +113,88 @@
                 case 'wizard':
                     return $translate.instant('dndspells.CLASS_LIST.WIZARD');
             }
+        }
+
+
+        /*
+         * spellLevelConfig - defined the config and data for the level dropdown
+         */
+        function spellLevelConfig(option) {
+
+            var spellLevelObj = {};
+
+            spellLevelObj.config = {
+                displayMode: 'block',
+                label: $translate.instant('dndspells.SPELL_LIST.LEVEL_FILTER_LABEL')
+            };
+            spellLevelObj.spellLevels = SpellsConstants.SPELL_LEVELS;
+            spellLevelObj.spellLevels[0].name = $translate.instant('dndspells.SPELL_LIST.CANTRIP');
+
+            if (spellLevelObj.spellLevels[0].id !== '0') {
+                spellLevelObj.spellLevels.unshift(option);
+            } else {
+                spellLevelObj.spellLevels[0] = option;
+            }
+
+            spellLevelObj.selectedLevel = spellLevelObj.spellLevels[0];
+
+            return spellLevelObj;
+        }
+
+
+        /*
+         * spellSchoolConfig - defined the config and data for the schools dropdown
+         */
+        function spellSchoolConfig(option) {
+
+            var spellSchoolObj = {};
+
+            spellSchoolObj.config = {
+                displayMode: 'block',
+                label: $translate.instant('dndspells.SPELL_LIST.SCHOOL_FILTER_LABEL')
+            };
+            spellSchoolObj.spellSchools = SpellsConstants.SPELL_SCHOOLS;
+            angular.forEach(spellSchoolObj.spellSchools, function(school, key) {
+                spellSchoolObj.spellSchools[key].name = angular.copy(getSpellSchoolTranslation(school.name));
+            });
+
+            if (spellSchoolObj.spellSchools[0].id !== '0') {
+                spellSchoolObj.spellSchools.unshift(option);
+            } else {
+                spellSchoolObj.spellSchools[0] = option;
+            }
+
+            spellSchoolObj.selectedSchool = spellSchoolObj.spellSchools[0];
+
+            return spellSchoolObj;
+        }
+
+
+        /*
+         * spellClassConfig - defined the config and data for the classes dropdown
+         */
+        function spellClassConfig(option) {
+
+            var spellClassesObj = {};
+
+            spellClassesObj.config = {
+                displayMode: 'block',
+                label: $translate.instant('dndspells.SPELL_LIST.CLASS_FILTER_LABEL')
+            };
+            spellClassesObj.spellClasses = SpellsConstants.SPELL_CLASSES;
+            angular.forEach(spellClassesObj.spellClasses, function(spellClass, key) {
+                spellClassesObj.spellClasses[key].name = angular.copy(getSpellClassTranslation(spellClass.name));
+            });
+
+            if (spellClassesObj.spellClasses[0].id !== '0') {
+                spellClassesObj.spellClasses.unshift(option);
+            } else {
+                spellClassesObj.spellClasses[0] = option;
+            }
+
+            spellClassesObj.selectedClass = spellClassesObj.spellClasses[0];
+
+            return spellClassesObj;
         }
 
     }

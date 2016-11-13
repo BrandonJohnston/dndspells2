@@ -1,5 +1,5 @@
-<div class="spell-list-module general-module">
-    <div class="mod-header-wrapper">
+<div class="spell-list-module general-module" ng-class="{editMode: vm.listMode === 'edit'}">
+    <div class="mod-header-wrapper" ng-if="vm.listMode === 'view'">
         <div class="mod-header">
             <h4 translate="dndspells.SPELL_LIST.HEADER"></h4>
         </div>
@@ -17,7 +17,7 @@
                         ng-model="vm.spellSchoolsDropdown.selectedSchool"
                         config="vm.spellSchoolsDropdown.config"></dnd-option-dropdown>
                 </div>
-                <div class="spell-list-filter class-filter">
+                <div class="spell-list-filter class-filter" ng-if="vm.listMode === 'view'">
                     <dnd-option-dropdown select-options="vm.spellClassesDropdown.spellClasses"
                         ng-model="vm.spellClassesDropdown.selectedClass"
                         config="vm.spellClassesDropdown.config"></dnd-option-dropdown>

@@ -8,7 +8,9 @@ angular
         function () {
             return {
                 restrict: 'E',
-                scope: {},
+                scope: {
+                    listMode: '=?'
+                },
                 templateUrl: 'components/spellList/spellListView.html',
                 controller: 'spellListDirectiveController',
                 controllerAs: 'vm'
