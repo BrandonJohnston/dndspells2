@@ -115,6 +115,7 @@
 
     .spell-list-row {
         border-bottom: 1px solid $teal-darken-20;
+        transition: all .15s ease-in-out;
 
         &:nth-child(odd) {
             background: lighten($black, 96%);
@@ -123,9 +124,9 @@
 
 
     /*
-     * Edit Mode
+     * Create Mode & Edit Mode
      */
-    &.editMode {
+    &.createMode, &.editMode {
 
         .spell-list-filters {
 
@@ -136,6 +137,24 @@
             .school-filter {
                 padding-right: 0;
             }
+        }
+
+        .spell-list {
+
+            > .selected {
+                background: $gray;
+            }
+        }
+    }
+
+
+    /*
+     * Disabled spell list
+     */
+    &.disabled {
+
+        .spell-list-row {
+            color: $gray-darken-10;
         }
     }
 }

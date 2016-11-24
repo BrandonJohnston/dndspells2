@@ -30,4 +30,13 @@
                     list-class-filter="vm.spellClassesDropdown.selectedClass"
                     list-disabled="vm.isListDisabled()"
                     selected-spells="vm.spellbookData.spells"></dnd-spell-list>
+    <div class="mod-body-wrapper">
+        <div class="mod-body">
+            <input type="button" class="button-submit"
+                   ng-class="{'button-disabled': !vm.checkSaveButton()}"
+                   ng-disabled="!vm.checkSaveButton()"
+                   ng-click="vm.createSpellbook()"
+                   value="{{'dndspells.CREATE_SPELLBOOK.SAVE_BUTTON' | translate}}" />
+        </div>
+    </div>
 </div>

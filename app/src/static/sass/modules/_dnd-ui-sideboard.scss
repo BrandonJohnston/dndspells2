@@ -30,6 +30,7 @@
     *****************************************************************************/
     .mod-header {
         background: $teal-darken-20;
+        padding-top: dnd-calc(10, 16, em);
         padding-left: dnd-calc(24, 16, em);
     }
 

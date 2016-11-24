@@ -13,18 +13,20 @@ createSpellbookController.$inject = [
     '$translate',
     'UserService',
     'SpellListService',
-    'SpellsConstants'
+    'SpellbookService'
 ];
 
 
-function createSpellbookController($scope, $log, $translate, UserService, SpellListService, SpellsConstants) {
+function createSpellbookController($scope, $log, $translate, UserService, SpellListService, SpellbookService) {
 
     var vm = this;
-    $log.debug("createSpellbookController");
+    $log.debug('createSpellbookController');
 
 
     // Setup functions
     vm.isListDisabled = isListDisabled;
+    vm.checkSaveButton = checkSaveButton;
+    vm.createSpellbook = createSpellbook;
 
 
     // Setup variables
@@ -34,7 +36,7 @@ function createSpellbookController($scope, $log, $translate, UserService, SpellL
     ];
     vm.userData = null;
     vm.spellListConfig = {
-        mode: 'edit'
+        mode: 'create'
     };
     vm.spellClassesDropdown = {};
     vm.spellbookData = {
@@ -88,5 +90,28 @@ function createSpellbookController($scope, $log, $translate, UserService, SpellL
         return vm.spellClassesDropdown.selectedClass &&
                 vm.spellClassesDropdown.selectedClass.value !== '0' &&
                 vm.spellClassesDropdown.selectedClass.value ? false : true;
+    }
+
+
+    /*
+     * checkSaveButton
+     */
+    function checkSaveButton() {
+
+        return vm.spellbookData.charName && !isListDisabled();
+    }
+
+
+    /*
+     * createSpellbook
+     */
+    function createSpellbook() {
+
+        $log.debug('createSpellbookController :: createSpellbook');
+        $log.debug(vm.spellbookData);
+
+        //SpellbookService.createSpellbook('data').then(function(response) {
+        //
+        //});
     }
 }

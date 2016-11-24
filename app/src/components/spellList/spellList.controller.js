@@ -74,7 +74,7 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
         vm.spellLevelsDropdown = angular.copy(SpellListService.spellLevelConfig(option));
         vm.spellSchoolsDropdown = angular.copy(SpellListService.spellSchoolConfig(option));
 
-        if (vm.listConfig.listMode !== 'edit') {
+        if (vm.listConfig.listMode === 'view') {
             vm.spellClassesDropdown = angular.copy(SpellListService.spellClassConfig(option));
         }
 
@@ -131,19 +131,19 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
     /*
      * toggleSpellSelected - add / remove spell from selected spell list
      */
-    function toggleSpellSelected(spellObj) {
+    function toggleSpellSelected(spellId) {
 
-        $log.debug('toggleSpellSelected(spellObj) ');
-        $log.debug(spellObj);
+        $log.debug('toggleSpellSelected(spellId) ');
+        $log.debug(spellId);
 
         var found = false;
 
-        found = spellNeedleSearch(spellObj);
+        found = spellNeedleSearch(spellId);
 
         if (found.found) {
             vm.selectedSpells.splice(found.key, 1);
         } else {
-            vm.selectedSpells.push(spellObj);
+            vm.selectedSpells.push(spellId);
         }
 
         $log.debug('selected spells:');
@@ -151,9 +151,9 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
     }
 
 
-    function checkSpellSelected(spellObj) {
+    function checkSpellSelected(spellId) {
 
-        var spell = spellNeedleSearch(spellObj);
+        var spell = spellNeedleSearch(spellId);
 
         return spell.found;
     }
@@ -162,7 +162,7 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
     /*
      * checkSpellSelected - return true / false if the spell is selected or not
      */
-    function spellNeedleSearch(spellObj) {
+    function spellNeedleSearch(spellId) {
 
         var returnSpell = {
             found: false,
@@ -171,7 +171,7 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
 
         angular.forEach(vm.selectedSpells, function(spell, key) {
 
-            if (spell.id === spellObj.id) {
+            if (spell === spellId) {
                 returnSpell.found = true;
                 returnSpell.key = key;
             }
