@@ -18,18 +18,11 @@
     }
 
 
-    .dropdown-label {
-        display: block;
-        font-size: dnd-calc(12, 16, em);
-        font-weight: bold;
-        padding-bottom: dnd-calc(6, 12, em);
-    }
-
-
     /*
      * The selected option
      */
     .selected-option {
+        background: $gray-80;
         border: 1px solid $teal-darken-20;
         cursor: pointer;
         padding: dnd-calc(6, 16, em) dnd-calc(40, 16, em) dnd-calc(6, 16, em) dnd-calc(10, 16, em);
@@ -44,6 +37,10 @@
                 }
             }
         }
+    }
+
+    .selected-option-text {
+        color: $white;
     }
 
     .option-toggle {
@@ -85,9 +82,9 @@
      * The list of options
      */
     .option-list {
-        border-top: 1px solid $teal-darken-20;
-        border-right: 1px solid $teal-darken-20;
-        border-left: 1px solid $teal-darken-20;
+        border-top: 1px solid $gray-100;
+        border-right: 1px solid $gray-100;
+        border-left: 1px solid $gray-100;
         display: none;
         left: 0;
         position: absolute;
@@ -97,32 +94,38 @@
     }
 
     .option-list-item {
-        background: $white;
-
+        background: $gray-80;
+        border-bottom: 1px solid $gray-100;
         cursor: pointer;
-        border-bottom: 1px solid $teal-darken-20;
-
         transition: all .15s ease-in-out;
 
+        .option-text {
+            transition: all .15s ease-in-out;
+        }
+
         &:hover {
-            background: $brand-primary;
+            background: $gray-90;
+
+            .option-text {
+                color: $brand-primary;
+            }
         }
 
         .text-container {
             border-left: 4px solid transparent;
-            padding: dnd-calc(6, 16, em) dnd-calc(10, 16, em);
+            padding: dnd-calc(8, 16, em) dnd-calc(10, 16, em) dnd-calc(8, 16, em) dnd-calc(20, 16, em);
         }
 
         &.selected {
 
             .text-container {
-                background: lighten($black, 96%);
-                border-left-color: $teal-darken-20;
+                background: $gray-90;
+                border-left-color: $brand-primary;
                 cursor: auto;
             }
 
             .option-text {
-                color: $teal-darken-20;
+                color: $brand-primary;
                 font-weight: bold;
             }
         }
@@ -158,12 +161,8 @@
      */
     &.disabled {
 
-        .dropdown-label {
-            color: $gray-darken-20;
-        }
-
         .selected-option {
-            border-color: $gray-darken-20;
+            border-color: $gray-100;
 
             &:hover {
 
@@ -174,20 +173,52 @@
         }
 
         .selected-option-text {
-            color: $gray-darken-20;
+            color: $gray-90;
         }
 
         .option-toggle {
-            background: $gray;
-            border-left-color: $gray-darken-20;
+            background: $gray-100;
+            border-left-color: $gray-100;
 
             &:before {
-                border-top-color: $gray-darken-20;
+                border-top-color: $gray-90;
             }
         }
 
         .selected-option {
             cursor: default;
+        }
+
+        .selected-option:hover {
+
+            .option-toggle:before {
+                border-top-color: $gray-90;
+            }
+        }
+    }
+}
+
+
+.form-large {
+
+    .selected-option {
+        font-size: dnd-calc(18, 16, em);
+        padding: dnd-calc(10, 18, em) dnd-calc(48, 18, em) dnd-calc(10, 18, em) dnd-calc(12, 18, em);
+    }
+
+    .option-toggle {
+        width: dnd-calc(42, 18, em);
+
+        &:after, &:before {
+            right: dnd-calc(15, 18, em);
+        }
+
+        &:after {
+            top: dnd-calc(13, 18, em);
+        }
+
+        &:before {
+            top: dnd-calc(18, 18, em);
         }
     }
 }

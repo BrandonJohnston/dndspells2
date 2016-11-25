@@ -5,8 +5,8 @@
 *****************************************************************************/
 .button-submit {
     background: $brand-primary;
-    border: 1px solid $teal-darken-10;
-    color: $teal-darken-20;
+    border: 1px solid $brand-primary;
+    color: $white;
     transition: all .15s ease-in-out;
 
     &:hover {
@@ -22,18 +22,18 @@
 
 
 .button-disabled {
-    background: $black-lighten-90;
-    border: 1px solid $black-lighten-50;
-    color: $black-lighten-50;
+    background: $gray-80;
+    border: 1px solid $gray-100;
+    color: $gray-90;
     cursor: default;
 
     &:hover {
-        background: $black-lighten-90;
-        color: $black-lighten-50;
+        background: $gray-80;
+        color: $gray-90;
     }
 
     &:active {
-        background: $black-lighten-90;
-        color: $black-lighten-50;
+        background: $gray-80;
+        color: $gray-90;
     }
 }

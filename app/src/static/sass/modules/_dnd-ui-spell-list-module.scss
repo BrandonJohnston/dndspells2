@@ -32,11 +32,6 @@
         }
     }
 
-
-    .spell-list {
-
-    }
-
     .spell-list-col {
         display: inline-block;
         padding: dnd-calc(6, 16, em) dnd-calc(10, 16, em);
@@ -52,6 +47,7 @@
     }
 
     .level-col {
+        padding-right: dnd-calc(30, 16, em);
         width: dnd-calc(1, 5, %);
     }
 
@@ -66,7 +62,7 @@
         .spell-list-col {
             background: $brand-primary;
             cursor: pointer;
-            border-left: 1px solid $teal-darken-20;
+            border-left: 1px solid $gray-90;
             padding-right: dnd-calc(30, 16, em);
             position: relative;
 
@@ -114,11 +110,25 @@
     }
 
     .spell-list-row {
-        border-bottom: 1px solid $teal-darken-20;
+        background: $gray-50;
+        border-bottom: 1px solid $gray-90;
+        position: relative;
         transition: all .15s ease-in-out;
 
         &:nth-child(odd) {
-            background: lighten($black, 96%);
+            background: $gray-70;
+        }
+
+        .toggle-spell-selected {
+            cursor: pointer;
+            position: absolute;
+            right: dnd-calc(10, 16, em);
+            top: dnd-calc(5, 16, em);
+            transition: all .15s ease-in-out;
+
+            &.selected {
+                transform: rotate(45deg);
+            }
         }
     }
 

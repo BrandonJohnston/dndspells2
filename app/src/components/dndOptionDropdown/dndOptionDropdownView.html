@@ -3,7 +3,7 @@
      'option-inline-block': vm.selectConfig.displayMode ==='inline-block',
      'active': vm.isListOpen,
      'disabled': vm.dropdownDisabled}">
-    <label class="dropdown-label">{{vm.selectConfig.label}}</label>
+    <label class="input-label">{{vm.selectConfig.label}}</label>
     <div class="selected-option" ng-click="vm.toggleOptionList()">
         <span class="selected-option-text">{{vm.selectedOption.name}}</span>
         <div class="option-toggle"></div>

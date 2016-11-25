@@ -1,0 +1,19 @@
+/*****************************************************************************
+**
+**		Login Module
+**
+*****************************************************************************/
+.create-spellbook-module {
+    padding-bottom: dnd-calc(10, 16, em);
+
+    .mod-body {
+        //padding-bottom: 0;
+    }
+
+    .create-char-form {
+
+        .char-name-item {
+            padding-bottom: dnd-calc(20, 16, em);
+        }
+    }
+}

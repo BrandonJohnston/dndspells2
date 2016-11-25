@@ -15,16 +15,30 @@ $black: #000;
 $black-lighten-50: lighten($black, 50%);
 $black-lighten-90: lighten($black, 90%);
 
+$gray: #e5e5e5;
+$gray-darken-10: darken($gray, 10%);
+$gray-darken-20: darken($gray, 20%);
+
+$gray-10: #c5c5c5;
+$gray-20: #b5b5b5;
+$gray-30: #a5a5a5;
+$gray-40: #959595;
+$gray-50: #757575;
+$gray-60: #656565;
+$gray-70: #555555;
+$gray-80: #454545;
+$gray-90: #353535;
+$gray-100: #252525;
+
 
 // Generic Colors
 $white: #fff;
-$gray: #e1e1e1;
-$gray-darken-10: darken($gray, 10%);
-$gray-darken-20: darken($gray, 20%);
+
 
 
 // Brand Colors
 $brand-primary: $teal;
+$background-primary: #353535;
 $error: #e73333;
 
 

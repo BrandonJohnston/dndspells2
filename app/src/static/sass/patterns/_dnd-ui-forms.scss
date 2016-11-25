@@ -13,13 +13,6 @@ form {
         }
     }
 
-    .input-label {
-        display: block;
-        font-size: dnd-calc(12, 16, em);
-        font-weight: bold;
-        padding-bottom: dnd-calc(6, 12, em);
-    }
-
     .form-errors {
         padding: dnd-calc(10, 16, em) 0;
     }
@@ -31,21 +24,54 @@ form {
     }
 }
 
-input[type="text"], input[type="password"], input[type="email"] {
-    border: 1px solid $gray;
+.input-label {
+    color: $teal-darken-10;
     display: block;
-    font-size: dnd-calc(18, 16, em);
-    padding: dnd-calc(12, 18, em);
+    font-size: dnd-calc(12, 16, em);
+    font-weight: bold;
+    padding-bottom: dnd-calc(6, 12, em);
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+    background: $gray-80;
+    border: 1px solid $teal-darken-20;
+    color: $white;
+    display: block;
+    line-height: 1.25;
+    padding: dnd-calc(6, 16, em) dnd-calc(10, 16, em);
     width: 100%;
+
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: $gray-90;
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+        color: $gray-90;
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+        color: $gray-90;
+    }
 
     &.ng-dirty.ng-invalid {
         border-color: $error;
+    }
+
+    &:focus {
+        outline: none;
     }
 }
 
 input[type="button"] {
     display: block;
-    font-size: dnd-calc(18, 16, em);
-    padding: dnd-calc(12, 18, em);
+    line-height: 1.25;
+    padding: dnd-calc(6, 16, em) dnd-calc(10, 16, em);
     width: 100%;
+}
+
+
+.form-large {
+
+    input[type="text"], input[type="password"], input[type="email"], input[type="button"] {
+        font-size: dnd-calc(18, 16, em);
+        padding: dnd-calc(10, 18, em) dnd-calc(12, 18, em);
+    }
 }

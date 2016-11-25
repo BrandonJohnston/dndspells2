@@ -4,7 +4,7 @@
 **
 *****************************************************************************/
 .sideboard {
-    background: $white;
+    background: $gray-80;
     bottom: 0;
     box-shadow: 0 0 20px rgba($black, .5);
     left: dnd-calc(-($sideboard-padding-small + 10), 100, %);
@@ -30,6 +30,8 @@
     *****************************************************************************/
     .mod-header {
         background: $teal-darken-20;
+        border-top: 1px solid $gray-90;
+        border-bottom: 1px solid $gray-90;
         padding-top: dnd-calc(10, 16, em);
         padding-left: dnd-calc(24, 16, em);
     }
@@ -51,37 +53,58 @@
         cursor: pointer;
         font-size: dnd-calc(14, 16, em);
         padding-left: dnd-calc(20, 14, em);
+        transition: all .15s ease-in-out;
 
         span {
-            border-bottom: 1px solid $black-lighten-90;
+            border-bottom: 1px solid $white;
+            color: $white;
             display: block;
             font-weight: bold;
             padding: dnd-calc(16, 14, em) dnd-calc(20, 14, em) dnd-calc(16, 14, em) 0;
+            transition: all .15s ease-in-out;
         }
 
         &:hover {
+            background: $gray-90;
 
             span {
                 color: $brand-primary;
             }
         }
 
-        &.active {
-            background: lighten($black, 96%);
-            border-left-color: $teal-darken-20;
-            color: $teal-darken-20;
+        &.selected {
+            background: $gray-90;
+            border-left-color: $brand-primary;
             cursor: default;
             font-weight: bold;
 
             span {
-                border-bottom: 1px solid $teal-darken-20;
+                //border-bottom: 1px solid $brand-primary;
+                color: $brand-primary;
             }
 
             &:hover {
 
                 span {
-                    color: $teal-darken-20;
+                    color: $brand-primary;
                 }
+            }
+        }
+
+        &:last-child {
+
+            span {
+                border: none;
+            }
+        }
+    }
+
+    .mod-body-wrapper:last-child {
+
+        .sidebar-nav-item:last-child {
+
+            span {
+                border-bottom: 1px solid $white;
             }
         }
     }
