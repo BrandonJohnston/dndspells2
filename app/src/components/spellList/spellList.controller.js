@@ -43,14 +43,13 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
     vm.spellSchoolsDropdown = {};
     vm.spellClassesDropdown = {};
 
-    $log.debug('spellListController :: inut selectedSpells:');
-    $log.debug(vm.selectedSpells);
-
 
     // Watch for changes to listClassFilter
     $scope.$watch('listClassFilter', function() {
         vm.listConfig.listClassFilter = angular.copy($scope.listClassFilter) || null;
+        vm.selectedSpells = [];
     });
+
 
     // Watch for changes to listDisabled
     $scope.$watch('listDisabled', function() {
@@ -133,21 +132,13 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
      */
     function toggleSpellSelected(spellId) {
 
-        $log.debug('toggleSpellSelected(spellId) ');
-        $log.debug(spellId);
-
-        var found = false;
-
-        found = spellNeedleSearch(spellId);
+        var found = spellNeedleSearch(spellId);
 
         if (found.found) {
             vm.selectedSpells.splice(found.key, 1);
         } else {
             vm.selectedSpells.push(spellId);
         }
-
-        $log.debug('selected spells:');
-        $log.debug(vm.selectedSpells);
     }
 
 

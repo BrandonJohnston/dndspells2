@@ -11,13 +11,14 @@ createSpellbookController.$inject = [
     '$scope',
     '$log',
     '$translate',
+    '$state',
     'UserService',
     'SpellListService',
     'SpellbookService'
 ];
 
 
-function createSpellbookController($scope, $log, $translate, UserService, SpellListService, SpellbookService) {
+function createSpellbookController($scope, $log, $translate, $state, UserService, SpellListService, SpellbookService) {
 
     var vm = this;
     $log.debug('createSpellbookController');
@@ -54,6 +55,11 @@ function createSpellbookController($scope, $log, $translate, UserService, SpellL
     });
 
 
+    $scope.$on('UserDataLoaded', function() {
+        checkUserData();
+    });
+
+
     /*
      * Initialize
      */
@@ -74,11 +80,20 @@ function createSpellbookController($scope, $log, $translate, UserService, SpellL
 
 
     /*
+     * Watch for changes to the class dropdown and update the spellbook object
+     */
+    $scope.$watch('vm.spellClassesDropdown.selectedClass', function() {
+        vm.spellbookData.charClass = angular.copy(vm.spellClassesDropdown.selectedClass.value);
+    });
+
+
+    /*
      * checkUserData - load user data
      */
     function checkUserData() {
 
         vm.userData = UserService.getUserData() || null;
+        vm.spellbookData.userId = vm.userData && vm.userData.id ? vm.userData.id : null;
     }
 
 
@@ -107,11 +122,9 @@ function createSpellbookController($scope, $log, $translate, UserService, SpellL
      */
     function createSpellbook() {
 
-        $log.debug('createSpellbookController :: createSpellbook');
-        $log.debug(vm.spellbookData);
+        SpellbookService.createSpellbook(vm.spellbookData).then(function(response) {
 
-        //SpellbookService.createSpellbook('data').then(function(response) {
-        //
-        //});
+            $state.go('spellbook.view', {spellbookId: response.data.spellbookID});
+        });
     }
 }

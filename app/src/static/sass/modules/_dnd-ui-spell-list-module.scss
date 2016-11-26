@@ -152,7 +152,7 @@
         .spell-list {
 
             > .selected {
-                background: $gray;
+                background: $teal-darken-10;
             }
         }
     }
@@ -163,8 +163,8 @@
      */
     &.disabled {
 
-        .spell-list-row {
-            color: $gray-darken-10;
+        .spell-list-row p {
+            color: $gray-30;
         }
     }
 }

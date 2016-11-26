@@ -10,7 +10,8 @@
                 <ul>
                     <li class="char-name-item">
                         <label class="input-label" translate="dndspells.CREATE_SPELLBOOK.CHAR_NAME_LABEL"></label>
-                        <input type="text" placeholder="{{'dndspells.CREATE_SPELLBOOK.CHAR_NAME_PLACEHOLDER' | translate}}" name="charName" ng-model="vm.spellbookData.charName"
+                        <input type="text" placeholder="{{'dndspells.CREATE_SPELLBOOK.CHAR_NAME_PLACEHOLDER' | translate}}"
+                               name="charName" ng-model="vm.spellbookData.charName"
                                required ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 250, 'blur': 0 } }"
                                ng-class="{'ng-invalid': vm.spellbookData.formError}" ng-focus="vm.spellbookData.formError=false" />
                         <div class="form-errors" ng-if="createCharForm.charName.$invalid && createCharForm.charName.$dirty">
