@@ -81,6 +81,9 @@
             "CHAR_NAME_PLACEHOLDER": "Character Name",
             "ERROR_CHAR_NAME_REQUIRED": "A name is required.",
             "SAVE_BUTTON": "Create Spellbook"
+        },
+        "DASHBOARD": {
+            "HEADER": "Dashboard"
         }
     }
 }

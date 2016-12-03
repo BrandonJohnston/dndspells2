@@ -100,7 +100,7 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
 
 
     /*
-     * getSepllSchoolLevel - returns text for the spell school and level
+     * getSchoolTranslation - returns translated text for the spell school
      */
     function getSchoolTranslation(school) {
 
@@ -139,6 +139,9 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
         } else {
             vm.selectedSpells.push(spellId);
         }
+
+        // Copy selected spells back to the $scope var for two-way binding to update
+        $scope.selectedSpells = angular.copy(vm.selectedSpells);
     }
 
 
