@@ -51,19 +51,46 @@
                         filter: {classes: vm.spellClassesDropdown.selectedClass.value || vm.listConfig.listClassFilter.value || undefined} : true |
                         orderBy: vm.spellOrder track by $index"
                     ng-class="{'selected': vm.checkSpellSelected(spell.id)}">
-                    <div class="spell-list-col name-col">
-                        <p>{{spell.name}}</p>
+                    <div class="spell-list-row-cols">
+                        <div class="spell-list-col name-col" ng-click="showDetails = !showDetails">
+                            <p>{{spell.name}}</p>
+                        </div>
+                        <div class="spell-list-col school-col" ng-click="showDetails = !showDetails">
+                            <p>{{vm.getSchoolTranslation(spell.school)}}
+                                <span class="ritual" ng-if="spell.ritual" translate="dndspells.SPELL_LIST.RITUAL"></span>
+                            </p>
+                        </div>
+                        <div class="spell-list-col level-col" ng-click="showDetails = !showDetails">
+                            <p>{{vm.getLevelTranslation(spell.level)}}</p>
+                        </div>
+                        <div class="toggle-spell-selected"
+                             ng-class="{'selected': vm.checkSpellSelected(spell.id)}"
+                             ng-if="(vm.listConfig.listMode === 'create' || vm.listConfig.listMode === 'edit') && !vm.listConfig.listDisabled">
+                            <p ng-click="vm.toggleSpellSelected(spell.id)">+</p>
+                        </div>
                     </div>
-                    <div class="spell-list-col name-col">
-                        <p>{{vm.getSchoolTranslation(spell.school)}}</p>
-                    </div>
-                    <div class="spell-list-col level-col">
-                        <p>{{vm.getLevelTranslation(spell.level)}}</p>
-                    </div>
-                    <div class="toggle-spell-selected"
-                         ng-class="{'selected': vm.checkSpellSelected(spell.id)}"
-                         ng-if="(vm.listConfig.listMode === 'create' || vm.listConfig.listMode === 'edit') && !vm.listConfig.listDisabled">
-                        <p ng-click="vm.toggleSpellSelected(spell.id)">+</p>
+                    <div class="spell-details" ng-if="showDetails">
+                        <p>
+                            <span class="label" translate="dndspells.SPELL_LIST.CASTING_TIME_LABEL"></span>
+                            <span>{{spell.casting_time}}</span>
+                        </p>
+                        <p>
+                            <span class="label" translate="dndspells.SPELL_LIST.RANGE_LABEL"></span>
+                            <span>{{spell.spell_range | capitalize}}</span>
+                        </p>
+                        <p>
+                            <span class="label" translate="dndspells.SPELL_LIST.COMPONENTS_LABEL"></span>
+                            <span ng-if="spell.verbal" translate="dndspells.SPELL_LIST.VERBAL"></span><span ng-if="spell.somatic">, </span>
+                            <span ng-if="spell.somatic" translate="dndspells.SPELL_LIST.SOMATIC"></span><span ng-if="spell.material">, </span>
+                            <span ng-if="spell.material" translate="dndspells.SPELL_LIST.MATERIAL" translate-values="{material: spell.material_component}"></span>
+                        </p>
+                        <p ng-if="spell.duration">
+                            <span class="label" translate="dndspells.SPELL_LIST.DURATION"></span>
+                            <span ng-if="spell.concentration" translate="dndspells.SPELL_LIST.CONCENTRATION" translate-values="{duration: spell.duration}"></span>
+                            <span ng-if="!spell.concentration">{{spell.duration}}</span>
+                        </p>
+                        <div class="spell-text" ng-if="spell.text" ng-bind-html="vm.renderHtml(spell.text)"></div>
+                        <div class="spell-higher-levels" ng-if="spell.higher_level" ng-bind-html="vm.renderHtml(spell.higher_level)"></div>
                     </div>
                 </li>
             </ul>

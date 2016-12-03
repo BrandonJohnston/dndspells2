@@ -42,6 +42,7 @@
                 url: 'http://127.0.0.1/personal/dndspells2-api/api.php/api/5e/spells/getspells',
                 method: 'GET',
                 withCredentials: true,
+                cache: true,
                 headers: {
                     'Content-Type': 'application/json; charset=utf-8'
                 },

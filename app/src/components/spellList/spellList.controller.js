@@ -11,11 +11,12 @@ spellListDirectiveController.$inject = [
     '$scope',
     '$log',
     '$translate',
+    '$sce',
     'SpellListService'
 ];
 
 
-function spellListDirectiveController($scope, $log, $translate, SpellListService) {
+function spellListDirectiveController($scope, $log, $translate, $sce, SpellListService) {
 
     var vm = this;
     $log.debug('spellListDirectiveController');
@@ -28,6 +29,8 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
     vm.setOrderProp = setOrderProp;
     vm.toggleSpellSelected = toggleSpellSelected;
     vm.checkSpellSelected = checkSpellSelected;
+    vm.toggleSpellDetails = toggleSpellDetails;
+    vm.renderHtml = renderHtml;
 
 
     // Setup variables
@@ -172,6 +175,22 @@ function spellListDirectiveController($scope, $log, $translate, SpellListService
         });
 
         return returnSpell;
+    }
+
+
+    /*
+     * toggleSpellDetails
+     */
+    function toggleSpellDetails(spellId) {
+
+    }
+
+
+    /*
+     *
+     */
+    function renderHtml(html) {
+        return $sce.trustAsHtml(html);
     }
 
 }

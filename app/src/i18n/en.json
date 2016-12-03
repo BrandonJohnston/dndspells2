@@ -73,7 +73,16 @@
             "SCHOOL_EVOCATION": "Evocation",
             "SCHOOL_ILLUSION": "Illusion",
             "SCHOOL_NECROMANCY": "Necromancy",
-            "SCHOOL_TRANSMUTATION": "Transmutation"
+            "SCHOOL_TRANSMUTATION": "Transmutation",
+            "RITUAL": "(ritual)",
+            "CASTING_TIME_LABEL": "Casting time: ",
+            "RANGE_LABEL": "Range: ",
+            "COMPONENTS_LABEL": "Components: ",
+            "VERBAL": "V",
+            "SOMATIC": "S",
+            "MATERIAL": "M ({{material}})",
+            "DURATION": "Duration: ",
+            "CONCENTRATION": "Concentration, up to {{duration}}"
         },
         "CREATE_SPELLBOOK": {
             "HEADER": "Create Spellbook",

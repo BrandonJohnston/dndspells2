@@ -92,7 +92,6 @@
                 bottom: dnd-calc(4, 16, em);
             }
 
-
             &.activeUp {
 
                 &:after {
@@ -109,26 +108,85 @@
         }
     }
 
+
+    /*
+     * Spell Row Styles
+     */
     .spell-list-row {
         background: $gray-50;
         border-bottom: 1px solid $gray-90;
-        position: relative;
         transition: all .15s ease-in-out;
 
         &:nth-child(odd) {
             background: $gray-70;
         }
 
+        .school-col, .level-col {
+            border-left: 1px solid $gray-90;
+        }
+
+        .ritual {
+            font-size: dnd-calc(13, 16, em);
+        }
+
         .toggle-spell-selected {
             cursor: pointer;
+            height: 100%;
+            line-height: dnd-calc(30, 16, em);
             position: absolute;
-            right: dnd-calc(10, 16, em);
-            top: dnd-calc(5, 16, em);
+            right: 0;
+            text-align: center;
+            top: 0;
             transition: all .15s ease-in-out;
+            width: dnd-calc(30, 16, em);
+
+            &:hover {
+                background: $brand-primary;
+            }
+
+            p {
+                transition: all .15s ease-in-out;
+            }
 
             &.selected {
-                transform: rotate(45deg);
+
+                p {
+                    transform: rotate(45deg);
+                }
             }
+        }
+    }
+
+    .spell-list-row-cols {
+        cursor: pointer;
+        position: relative;
+    }
+
+    .spell-details {
+        border-top: 1px solid $gray-90;
+        padding: dnd-calc(12, 16, em) dnd-calc(10, 16, em);
+        transition: all .15s ease-in-out;
+
+        .label {
+            font-weight: bold;
+        }
+
+        p {
+            color: $offwhite;
+            font-size: dnd-calc(13, 16, em);
+        }
+
+        .spell-higher-levels {
+            padding-top: dnd-calc(10, 16, em);
+        }
+    }
+
+
+    // Selected spell row
+    .spell-list-row.selected {
+
+        .spell-list-row-cols {
+            background: $teal-darken-10;
         }
     }
 
@@ -146,13 +204,6 @@
 
             .school-filter {
                 padding-right: 0;
-            }
-        }
-
-        .spell-list {
-
-            > .selected {
-                background: $teal-darken-10;
             }
         }
     }
