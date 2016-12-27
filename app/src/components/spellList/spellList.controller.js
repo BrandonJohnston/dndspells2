@@ -26,6 +26,7 @@ function spellListDirectiveController($scope, $log, $translate, $sce, SpellListS
     vm.getSpells = getSpells;
     vm.getSchoolTranslation = getSchoolTranslation;
     vm.getLevelTranslation = getLevelTranslation;
+    vm.getSourceTranslation = getSourceTranslation;
     vm.setOrderProp = setOrderProp;
     vm.toggleSpellSelected = toggleSpellSelected;
     vm.checkSpellSelected = checkSpellSelected;
@@ -118,6 +119,15 @@ function spellListDirectiveController($scope, $log, $translate, $sce, SpellListS
     function getLevelTranslation(level) {
 
         return level === '0' ? $translate.instant('dndspells.SPELL_LIST.CANTRIP') : level;
+    }
+
+
+    /*
+     * getSourceTranslation - returns translated text for spell source
+     */
+    function getSourceTranslation(source) {
+
+        return SpellListService.getSpellSourceTranslation(source);
     }
 
 

@@ -23,6 +23,7 @@
             getSpells5e: getSpells5e,
             getSpellSchoolTranslation: getSpellSchoolTranslation,
             getSpellClassTranslation: getSpellClassTranslation,
+            getSpellSourceTranslation: getSpellSourceTranslation,
             spellLevelConfig: spellLevelConfig,
             spellSchoolConfig: spellSchoolConfig,
             spellClassConfig: spellClassConfig
@@ -113,6 +114,26 @@
                     return $translate.instant('dndspells.CLASS_LIST.WARLOCK');
                 case 'wizard':
                     return $translate.instant('dndspells.CLASS_LIST.WIZARD');
+            }
+        }
+
+
+        /*
+         * getSpellSourceTranslation - returns the translation for the specific spell source book
+         */
+        function getSpellSourceTranslation(spellSource) {
+
+            var source = spellSource;
+
+            switch(source) {
+                case '1':
+                    return $translate.instant('dndspells.SPELL_LIST.SOURCE_PHB');
+                case '2':
+                    return $translate.instant('dndspells.SPELL_LIST.SOURCE_MM');
+                case '3':
+                    return $translate.instant('dndspells.SPELL_LIST.SOURCE_DMG');
+                default:
+                    return $translate.instant('dndspells.SPELL_LIST.SOURCE_UNKNOWN');
             }
         }
 

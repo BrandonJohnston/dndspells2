@@ -90,7 +90,13 @@
                             <span ng-if="!spell.concentration">{{spell.duration}}</span>
                         </p>
                         <div class="spell-text" ng-if="spell.text" ng-bind-html="vm.renderHtml(spell.text)"></div>
-                        <div class="spell-higher-levels" ng-if="spell.higher_level" ng-bind-html="vm.renderHtml(spell.higher_level)"></div>
+                        <div class="spell-higher-levels" ng-if="spell.higher_level">
+                            <span class="label" translate="dndspells.SPELL_LIST.HIGHER_LEVELS"></span>
+                            <div ng-bind-html="vm.renderHtml(spell.higher_level)"></div>
+                        </div>
+                        <p class="spell-source">
+                            {{vm.getSourceTranslation(spell.source)}}: {{spell.source_page}}
+                        </p>
                     </div>
                 </li>
             </ul>

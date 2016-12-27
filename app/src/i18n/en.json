@@ -82,7 +82,12 @@
             "SOMATIC": "S",
             "MATERIAL": "M ({{material}})",
             "DURATION": "Duration: ",
-            "CONCENTRATION": "Concentration, up to {{duration}}"
+            "CONCENTRATION": "Concentration, up to {{duration}}",
+            "HIGHER_LEVELS": "At Higher Levels: ",
+            "SOURCE_PHB": "Player's Handbook",
+            "SOURCE_MM": "Monster Manual",
+            "SOURCE_DMG": "Dungeon Master's Guide",
+            "SOURCE_UNKNOWN": "Unknown"
         },
         "CREATE_SPELLBOOK": {
             "HEADER": "Create Spellbook",
